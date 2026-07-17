@@ -105,13 +105,24 @@ function SolidButton({
   );
 }
 
-const RESOURCES = [
+type Resource = {
+  n: string;
+  title: string;
+  body: string;
+  cta?: string;
+  href?: string;
+  links?: { label: string; href: string }[];
+};
+
+const RESOURCES: Resource[] = [
   {
     n: "01",
     title: "Installation & Maintenance Videos",
     body: "Step-by-step guidance on setup, connecting and commissioning your system, routine maintenance, filter changes, cleaning procedures, troubleshooting, and best practices for performance and longevity.",
-    cta: "Watch Videos →",
-    href: LINKS.videos,
+    links: [
+      { label: "Watch Installation →", href: LINKS.videoInstallation },
+      { label: "Watch Maintenance →", href: LINKS.videoMaintenance },
+    ],
   },
   {
     n: "02",
