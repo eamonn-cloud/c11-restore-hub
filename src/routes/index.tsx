@@ -310,7 +310,7 @@ function AftercarePage() {
                     { label: "Videos", href: m.videos },
                     { label: "Product Card", href: m.productCard },
                     { label: "Manual", href: m.manual },
-                    { label: "Warranty", href: m.warranty },
+                    ...(m.problems ? [{ label: "Problems & Solutions", href: m.problems }] : []),
                   ].map((l) => (
                     <li key={l.label}>
                       <A
