@@ -125,6 +125,7 @@ const RESOURCES: Resource[] = [
       { label: "Hanki — Installation →", href: LINKS.hankiInstallation },
       { label: "Hanki — Maintenance →", href: LINKS.hankiMaintenance },
       { label: "Kinos — Installation →", href: LINKS.kinosInstallation },
+      { label: "Kinos — Maintenance →", href: LINKS.kinosMaintenance },
     ],
   },
   {
