@@ -7,7 +7,8 @@ export const Route = createFileRoute("/")({
 
 // Central link config — swap real URLs here later.
 const LINKS = {
-  videos: "https://www.youtube.com/watch?v=1OAQ5_R05zU",
+  videoInstallation: "https://www.youtube.com/watch?v=1OAQ5_R05zU",
+  videoMaintenance: "https://youtu.be/hoWbLX3eawM?si=4xwF3xlHuNuYISyR",
   productCards: "#",
   manuals: "#",
   filters: "#",
