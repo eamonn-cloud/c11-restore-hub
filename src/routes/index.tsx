@@ -643,16 +643,18 @@ function AftercarePage() {
             <SectionLabel>Follow C11</SectionLabel>
             <div className="flex flex-wrap gap-3">
               {[
-                { name: "Instagram", href: LINKS.instagram },
-                { name: "LinkedIn", href: LINKS.linkedin },
-                { name: "TikTok", href: LINKS.tiktok },
+                { name: "Instagram", href: LINKS.instagram, Icon: Instagram },
+                { name: "LinkedIn", href: LINKS.linkedin, Icon: Linkedin },
+                { name: "TikTok", href: LINKS.tiktok, Icon: TikTokIcon },
               ].map((s) => (
                 <A
                   key={s.name}
                   href={s.href}
-                  className="inline-flex items-center px-5 py-3 border border-obsidian rounded-[2px] text-xs uppercase tracking-[0.2em] font-medium hover:bg-obsidian hover:text-stone-base transition-colors"
+                  aria-label={s.name}
+                  className="inline-flex items-center gap-2 px-5 py-3 border border-obsidian rounded-[2px] text-xs uppercase tracking-[0.2em] font-medium hover:bg-obsidian hover:text-stone-base transition-colors"
                 >
-                  {s.name}
+                  <s.Icon className="w-4 h-4" />
+                  <span>{s.name}</span>
                 </A>
               ))}
             </div>
