@@ -118,12 +118,8 @@ const RESOURCES: Resource[] = [
     n: "01",
     title: "Installation & Maintenance Videos",
     body: "Step-by-step guidance on setup, connecting and commissioning your system, routine maintenance, filter changes, cleaning procedures, troubleshooting, and best practices for performance and longevity.",
-    links: [
-      { label: "Hanki — Installation →", href: LINKS.hankiInstallation },
-      { label: "Hanki — Maintenance →", href: LINKS.hankiMaintenance },
-      { label: "Kinos — Installation →", href: LINKS.kinosInstallation },
-      { label: "Kinos — Maintenance →", href: LINKS.kinosMaintenance },
-    ],
+    cta: "Browse Video Library →",
+    href: LINKS.videos,
   },
   {
     n: "02",
