@@ -269,6 +269,22 @@ function AftercarePage() {
             </p>
           </div>
         </div>
+
+        {/* Slogan strip */}
+        <div className="border-t border-stone-base/20">
+          <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-6 md:py-7 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs md:text-sm uppercase tracking-[0.2em] text-stone-base/80">
+            {[
+              "Recovery for modern routines.",
+              "Performance-led recovery, installs & experiences.",
+              "Built for what comes next.",
+            ].map((s, i) => (
+              <span key={s} className="inline-flex items-center gap-8">
+                {i > 0 && <span aria-hidden className="text-thermal-rose">✳</span>}
+                <span>{s}</span>
+              </span>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* MODELS */}
