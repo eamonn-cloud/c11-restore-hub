@@ -1,5 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import kinosImg from "@/assets/kinos.png.asset.json";
+import kinosPlusImg from "@/assets/kinos-plus.png.asset.json";
+import hankiImg from "@/assets/hanki.png.asset.json";
+import kuuraImg from "@/assets/kuura.png.asset.json";
+
+
 
 export const Route = createFileRoute("/")({
   component: AftercarePage,
