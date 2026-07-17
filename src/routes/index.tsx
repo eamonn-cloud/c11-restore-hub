@@ -318,6 +318,7 @@ function AftercarePage() {
                     { label: "Videos", href: m.videos },
                     { label: "Product Card", href: m.productCard },
                     { label: "Manual", href: m.manual },
+                    ...(m.controllerManual ? [{ label: "Wi-Fi Controller Manual", href: m.controllerManual }] : []),
                     ...(m.problems ? [{ label: "Problems & Solutions", href: m.problems }] : []),
                   ].map((l) => (
                     <li key={l.label}>
