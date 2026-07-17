@@ -26,10 +26,10 @@ const LINKS = {
   manuals: chuManual.url,
   chuManual: chuManual.url,
   filters: "https://c11recovery.com/avantopool-ice-baths/?ts=1784206761",
-  review: "#",
-  instagram: "#",
-  linkedin: "#",
-  tiktok: "#",
+  review: "https://g.page/r/CQUuYSv-ChSqEBM/review",
+  instagram: "https://www.instagram.com/c11recovery?igsh=MTExODd2dWRsb2ho&utm_source=qr",
+  linkedin: "https://www.linkedin.com/company/c11-recovery/",
+  tiktok: "https://www.tiktok.com/@c11recovery?_r=1&_t=ZN-9858JOdo3tO",
 };
 
 type ModelResources = {
