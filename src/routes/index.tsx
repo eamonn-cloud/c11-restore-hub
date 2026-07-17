@@ -7,8 +7,9 @@ export const Route = createFileRoute("/")({
 
 // Central link config — swap real URLs here later.
 const LINKS = {
-  videoInstallation: "https://www.youtube.com/watch?v=1OAQ5_R05zU",
-  videoMaintenance: "https://youtu.be/hoWbLX3eawM?si=4xwF3xlHuNuYISyR",
+  hankiInstallation: "https://www.youtube.com/watch?v=1OAQ5_R05zU",
+  hankiMaintenance: "https://youtu.be/hoWbLX3eawM?si=4xwF3xlHuNuYISyR",
+  kinosInstallation: "https://youtu.be/qpBxQ_RMZRk?si=AnLTtnFvY_hFa7JM",
   productCards: "#",
   manuals: "#",
   filters: "#",
@@ -120,8 +121,9 @@ const RESOURCES: Resource[] = [
     title: "Installation & Maintenance Videos",
     body: "Step-by-step guidance on setup, connecting and commissioning your system, routine maintenance, filter changes, cleaning procedures, troubleshooting, and best practices for performance and longevity.",
     links: [
-      { label: "Watch Installation →", href: LINKS.videoInstallation },
-      { label: "Watch Maintenance →", href: LINKS.videoMaintenance },
+      { label: "Hanki — Installation →", href: LINKS.hankiInstallation },
+      { label: "Hanki — Maintenance →", href: LINKS.hankiMaintenance },
+      { label: "Kinos — Installation →", href: LINKS.kinosInstallation },
     ],
   },
   {
