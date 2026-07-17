@@ -6,6 +6,8 @@ import hankiImg from "@/assets/hanki.png.asset.json";
 import kuuraImg from "@/assets/kuura.png.asset.json";
 import chuManual from "@/assets/chu-manual.pdf.asset.json";
 import kinosManual from "@/assets/kinos-manual.pdf.asset.json";
+import kinosOnePager from "@/assets/kinos-one-pager.pdf.asset.json";
+import kinosProblems from "@/assets/kinos-problems.pdf.asset.json";
 
 
 
