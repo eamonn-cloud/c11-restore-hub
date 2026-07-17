@@ -10,6 +10,7 @@ const LINKS = {
   hankiInstallation: "https://www.youtube.com/watch?v=1OAQ5_R05zU",
   hankiMaintenance: "https://youtu.be/hoWbLX3eawM?si=4xwF3xlHuNuYISyR",
   kinosInstallation: "https://youtu.be/qpBxQ_RMZRk?si=AnLTtnFvY_hFa7JM",
+  kinosMaintenance: "https://youtu.be/BH08IEOUj4M?si=0_UZvHKK1-6Zhxsi",
   productCards: "#",
   manuals: "#",
   filters: "#",
