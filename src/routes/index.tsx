@@ -44,7 +44,7 @@ const MODELS: ModelResources[] = [
     image: kinosImg.url,
     videos: "/videos",
     productCard: "#",
-    manual: "#",
+    manual: chuManual.url,
     warranty: "#",
   },
   {
@@ -54,7 +54,7 @@ const MODELS: ModelResources[] = [
     image: kinosPlusImg.url,
     videos: "/videos",
     productCard: "#",
-    manual: "#",
+    manual: chuManual.url,
     warranty: "#",
   },
   {
@@ -64,7 +64,7 @@ const MODELS: ModelResources[] = [
     image: hankiImg.url,
     videos: "/videos",
     productCard: "#",
-    manual: "#",
+    manual: chuManual.url,
     warranty: "#",
   },
   {
@@ -74,7 +74,7 @@ const MODELS: ModelResources[] = [
     image: kuuraImg.url,
     videos: "/videos",
     productCard: "#",
-    manual: "#",
+    manual: chuManual.url,
     warranty: "#",
   },
 ];
