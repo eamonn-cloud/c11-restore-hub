@@ -1,5 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import kinosImg from "@/assets/kinos.png.asset.json";
+import kinosPlusImg from "@/assets/kinos-plus.png.asset.json";
+import hankiImg from "@/assets/hanki.png.asset.json";
+import kuuraImg from "@/assets/kuura.png.asset.json";
+
+
 
 export const Route = createFileRoute("/")({
   component: AftercarePage,
@@ -21,6 +27,7 @@ type ModelResources = {
   key: string;
   name: string;
   tagline: string;
+  image: string;
   videos: string;
   productCard: string;
   manual: string;
@@ -32,6 +39,7 @@ const MODELS: ModelResources[] = [
     key: "kinos",
     name: "Kinos",
     tagline: "Compact chilled ice bath.",
+    image: kinosImg.url,
     videos: "/videos",
     productCard: "#",
     manual: "#",
@@ -41,6 +49,7 @@ const MODELS: ModelResources[] = [
     key: "kinos-plus",
     name: "Kinos Plus",
     tagline: "Extended capacity, same precision.",
+    image: kinosPlusImg.url,
     videos: "/videos",
     productCard: "#",
     manual: "#",
@@ -50,6 +59,7 @@ const MODELS: ModelResources[] = [
     key: "hanki",
     name: "Hanki",
     tagline: "Twin-bath performance system.",
+    image: hankiImg.url,
     videos: "/videos",
     productCard: "#",
     manual: "#",
@@ -59,12 +69,14 @@ const MODELS: ModelResources[] = [
     key: "kuura",
     name: "Kuura",
     tagline: "Flagship recovery pool.",
+    image: kuuraImg.url,
     videos: "/videos",
     productCard: "#",
     manual: "#",
     warranty: "#",
   },
 ];
+
 
 const isExternal = (href: string) => /^https?:\/\//i.test(href);
 
@@ -267,7 +279,7 @@ function AftercarePage() {
             {MODELS.map((m, i) => (
               <article
                 key={m.key}
-                className="bg-stone-base p-8 md:p-10 flex flex-col min-h-[440px]"
+                className="bg-stone-base p-8 md:p-10 flex flex-col min-h-[560px]"
               >
                 <div className="flex items-baseline justify-between">
                   <span className="font-display text-xs tabular-nums text-obsidian/50 tracking-[0.16em]">
@@ -275,12 +287,21 @@ function AftercarePage() {
                   </span>
                   <span aria-hidden className="text-obsidian/40">✳</span>
                 </div>
-                <h3 className="mt-10 font-display text-3xl md:text-4xl font-bold leading-none uppercase tracking-tight">
+                <div className="mt-8 aspect-[4/3] bg-soft-mineral/30 border border-obsidian/10 rounded-[2px] overflow-hidden flex items-center justify-center">
+                  <img
+                    src={m.image}
+                    alt={`${m.name} ice bath`}
+                    loading="lazy"
+                    className="w-full h-full object-contain mix-blend-multiply"
+                  />
+                </div>
+                <h3 className="mt-8 font-display text-3xl md:text-4xl font-bold leading-none uppercase tracking-tight">
                   {m.name}
                 </h3>
-                <p className="mt-4 font-editorial italic text-obsidian/70 text-base leading-snug">
+                <p className="mt-3 font-editorial italic text-obsidian/70 text-base leading-snug">
                   {m.tagline}
                 </p>
+
 
                 <ul className="mt-auto pt-10 flex flex-col gap-3 border-t border-obsidian/80">
                   {[
