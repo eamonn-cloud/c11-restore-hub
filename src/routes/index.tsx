@@ -257,8 +257,153 @@ function AftercarePage() {
         </div>
       </section>
 
+      {/* SUPPORT / KNOWLEDGE BASE */}
+      <section className="bg-stone-base border-b border-obsidian">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-20 md:py-28">
+          <div className="flex items-baseline justify-between flex-wrap gap-6">
+            <SectionLabel>Support Articles</SectionLabel>
+            <p className="font-editorial italic text-obsidian/70 text-lg max-w-md">
+              Common questions, answered. Browse by category.
+            </p>
+          </div>
+
+          <h2 className="mt-6 font-display uppercase font-bold leading-[0.95] tracking-tight text-4xl md:text-5xl max-w-3xl">
+            Troubleshooting & help centre
+          </h2>
+
+          {/* Breadcrumb */}
+          <div className="mt-10 pb-4 border-b border-obsidian/80 text-xs uppercase tracking-[0.2em] text-obsidian/60 flex flex-wrap items-center gap-x-3 gap-y-2">
+            <A href="#" className="hover:text-deep-current transition-colors">Home</A>
+            <span aria-hidden>/</span>
+            <A href="#" className="hover:text-deep-current transition-colors">Docs</A>
+            <span aria-hidden>/</span>
+            <A href="#" className="hover:text-deep-current transition-colors">Ice Baths</A>
+            <span aria-hidden>/</span>
+            <span className="text-obsidian">Chiller not pumping water</span>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-x-10">
+            {/* Sidebar */}
+            <aside className="lg:col-span-4 lg:border-r lg:border-obsidian lg:pr-10">
+              <ul className="flex flex-col">
+                {SUPPORT_CATEGORIES.map((cat) => (
+                  <li key={cat.name} className="border-t border-obsidian first:border-t-0">
+                    <button
+                      type="button"
+                      className={`w-full flex items-center justify-between py-5 text-left transition-colors ${
+                        cat.active ? "text-obsidian" : "text-obsidian/70 hover:text-obsidian"
+                      }`}
+                    >
+                      <span className="flex items-center gap-3">
+                        <span
+                          aria-hidden
+                          className={`inline-block transition-transform ${cat.active ? "rotate-90" : ""}`}
+                        >
+                          ›
+                        </span>
+                        <span className="font-display text-lg font-bold uppercase tracking-tight">
+                          {cat.name}
+                        </span>
+                      </span>
+                      <span className="inline-flex items-center justify-center w-8 h-8 border border-obsidian rounded-full text-[0.7rem] tabular-nums">
+                        {cat.count}
+                      </span>
+                    </button>
+
+                    {cat.active && cat.articles.length > 0 && (
+                      <ul className="pl-6 pb-6 flex flex-col gap-3">
+                        {cat.articles.map((a) => (
+                          <li key={a.title}>
+                            <A
+                              href={a.href}
+                              className={`block text-sm leading-snug transition-colors ${
+                                a.active
+                                  ? "text-deep-current"
+                                  : "text-obsidian/75 hover:text-deep-current"
+                              }`}
+                            >
+                              <span className="mr-2 text-obsidian/40" aria-hidden>—</span>
+                              {a.title}
+                            </A>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+                <li className="border-t border-b border-obsidian" />
+              </ul>
+            </aside>
+
+            {/* Article preview */}
+            <article className="lg:col-span-8 mt-10 lg:mt-0">
+              <h3
+                className="font-display font-bold uppercase leading-[0.95] tracking-tight"
+                style={{ fontSize: "clamp(1.75rem, 3.5vw, 3rem)" }}
+              >
+                Chiller is not pumping water after filter change / initial setup
+              </h3>
+
+              <p className="mt-8 text-lg leading-relaxed text-obsidian/85 max-w-2xl">
+                When your ice bath has been drained or left disconnected from water
+                for an extended period, air can get into the system and cause an
+                airlock in the chiller. This prevents the pump from pulling water
+                through properly.
+              </p>
+
+              <p className="mt-10 text-xs uppercase tracking-[0.22em] text-obsidian/60">
+                How to fix it
+              </p>
+
+              <ol className="mt-6 flex flex-col divide-y divide-obsidian/80 border-t border-b border-obsidian">
+                {[
+                  {
+                    step: "Reconnect everything",
+                    body: "Make sure all hoses are connected securely and every valve is open so water can flow freely through the system.",
+                  },
+                  {
+                    step: "Turn on the chiller",
+                    body: "Power up the unit — you'll hear the pump start trying to pull water. If there's an airlock, the pump runs but no water circulates.",
+                  },
+                  {
+                    step: "Bleed the airlock",
+                    body: "Slowly loosen the main filter housing (or hair filter housing, whichever is accessible). Water should begin to fill the housing as air escapes.",
+                  },
+                  {
+                    step: "Watch for water flow",
+                    body: "Once water enters the filter housing, the pump is priming. Seal the housing back up and let the system run.",
+                  },
+                ].map((s, i) => (
+                  <li key={s.step} className="py-6 grid grid-cols-[auto_1fr] gap-6">
+                    <span className="font-display text-2xl font-bold tabular-nums text-obsidian/40">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <div className="font-display text-lg font-bold uppercase tracking-tight">
+                        {s.step}
+                      </div>
+                      <p className="mt-2 text-[0.95rem] leading-relaxed text-obsidian/80">
+                        {s.body}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+
+              <div className="mt-10 flex flex-wrap items-center gap-6">
+                <ArrowLink href={LINKS.manuals}>Read full article →</ArrowLink>
+                <span className="font-editorial italic text-obsidian/60">
+                  Still stuck? Reach out through the manuals section.
+                </span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       {/* FILTERS BANNER */}
       <section className="bg-thermal-rose text-obsidian border-b border-obsidian">
+
         <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
             <div className="lg:col-span-8">
