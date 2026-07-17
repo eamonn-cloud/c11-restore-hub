@@ -5,9 +5,13 @@ import kinosPlusImg from "@/assets/kinos-plus.png.asset.json";
 import hankiImg from "@/assets/hanki.png.asset.json";
 import kuuraImg from "@/assets/kuura.png.asset.json";
 import chuManual from "@/assets/chu-manual.pdf.asset.json";
+import chuWifiManual from "@/assets/chu-wifi-manual.pdf.asset.json";
 import kinosManual from "@/assets/kinos-manual.pdf.asset.json";
 import kinosOnePager from "@/assets/kinos-one-pager.pdf.asset.json";
 import kinosProblems from "@/assets/kinos-problems.pdf.asset.json";
+import kinosPlusManual from "@/assets/kinos-plus-manual.pdf.asset.json";
+import kinosPlusOnePager from "@/assets/kinos-plus-one-pager.pdf.asset.json";
+import kuuraManual from "@/assets/kuura-manual.pdf.asset.json";
 
 
 
@@ -36,6 +40,7 @@ type ModelResources = {
   videos: string;
   productCard: string;
   manual: string;
+  controllerManual?: string;
   problems?: string;
 };
 
@@ -56,8 +61,9 @@ const MODELS: ModelResources[] = [
     tagline: "Extended capacity, same precision.",
     image: kinosPlusImg.url,
     videos: "/videos",
-    productCard: "#",
-    manual: chuManual.url,
+    productCard: kinosPlusOnePager.url,
+    manual: kinosPlusManual.url,
+    controllerManual: chuWifiManual.url,
   },
   {
     key: "hanki",
@@ -67,6 +73,7 @@ const MODELS: ModelResources[] = [
     videos: "/videos",
     productCard: "#",
     manual: chuManual.url,
+    controllerManual: chuWifiManual.url,
   },
   {
     key: "kuura",
@@ -75,7 +82,8 @@ const MODELS: ModelResources[] = [
     image: kuuraImg.url,
     videos: "/videos",
     productCard: "#",
-    manual: chuManual.url,
+    manual: kuuraManual.url,
+    controllerManual: chuWifiManual.url,
   },
 ];
 
