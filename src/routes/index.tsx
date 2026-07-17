@@ -6,6 +6,8 @@ import hankiImg from "@/assets/hanki.png.asset.json";
 import kuuraImg from "@/assets/kuura.png.asset.json";
 import chuManual from "@/assets/chu-manual.pdf.asset.json";
 import kinosManual from "@/assets/kinos-manual.pdf.asset.json";
+import kinosOnePager from "@/assets/kinos-one-pager.pdf.asset.json";
+import kinosProblems from "@/assets/kinos-problems.pdf.asset.json";
 
 
 
@@ -34,7 +36,7 @@ type ModelResources = {
   videos: string;
   productCard: string;
   manual: string;
-  warranty: string;
+  problems?: string;
 };
 
 const MODELS: ModelResources[] = [
@@ -44,9 +46,9 @@ const MODELS: ModelResources[] = [
     tagline: "Compact chilled ice bath.",
     image: kinosImg.url,
     videos: "/videos",
-    productCard: "#",
+    productCard: kinosOnePager.url,
     manual: kinosManual.url,
-    warranty: "#",
+    problems: kinosProblems.url,
   },
   {
     key: "kinos-plus",
@@ -56,7 +58,6 @@ const MODELS: ModelResources[] = [
     videos: "/videos",
     productCard: "#",
     manual: chuManual.url,
-    warranty: "#",
   },
   {
     key: "hanki",
@@ -66,7 +67,6 @@ const MODELS: ModelResources[] = [
     videos: "/videos",
     productCard: "#",
     manual: chuManual.url,
-    warranty: "#",
   },
   {
     key: "kuura",
@@ -76,7 +76,6 @@ const MODELS: ModelResources[] = [
     videos: "/videos",
     productCard: "#",
     manual: chuManual.url,
-    warranty: "#",
   },
 ];
 
@@ -188,14 +187,14 @@ const RESOURCES: Resource[] = [
   {
     n: "02",
     title: "Product Cards",
-    body: "A quick overview of each product: key features, technical specs, dimensions, capacity, power requirements, included accessories, warranty details, and main benefits.",
+    body: "A quick overview of each product: key features, technical specs, dimensions, capacity, power requirements, included accessories, and main benefits.",
     cta: "View Product Cards →",
     href: LINKS.productCards,
   },
   {
     n: "03",
-    title: "Manuals & Warranty Information",
-    body: "Full product manuals covering safety, technical specifications, installation, electrical and water connections, commissioning, controller operation, filter and UV lamp maintenance, error codes, troubleshooting, and warranty.",
+    title: "Manuals",
+    body: "Full product manuals covering safety, technical specifications, installation, electrical and water connections, commissioning, controller operation, filter and UV lamp maintenance, error codes, and troubleshooting.",
     cta: "Open Manuals →",
     href: LINKS.manuals,
   },
@@ -218,7 +217,7 @@ const MANUAL_TOPICS = [
   "UV lamp replacement",
   "Water replacement & ongoing maintenance",
   "Error codes & troubleshooting",
-  "Warranty information",
+
 ];
 
 const SUPPORT_CATEGORIES = [
@@ -236,7 +235,7 @@ const SUPPORT_CATEGORIES = [
   },
   { name: "Setup & Installation", count: 4, articles: [] },
   { name: "Maintenance", count: 6, articles: [] },
-  { name: "Warranty & Returns", count: 3, articles: [] },
+  { name: "Troubleshooting", count: 3, articles: [] },
 ];
 
 function AftercarePage() {
@@ -311,7 +310,7 @@ function AftercarePage() {
                     { label: "Videos", href: m.videos },
                     { label: "Product Card", href: m.productCard },
                     { label: "Manual", href: m.manual },
-                    { label: "Warranty", href: m.warranty },
+                    ...(m.problems ? [{ label: "Problems & Solutions", href: m.problems }] : []),
                   ].map((l) => (
                     <li key={l.label}>
                       <A
