@@ -16,7 +16,7 @@ const LINKS = {
   videos: "/videos",
   productCards: "#",
   manuals: "#",
-  filters: "#",
+  filters: "https://c11recovery.com/avantopool-ice-baths/?ts=1784206761",
   review: "#",
   instagram: "#",
   linkedin: "#",
