@@ -7,7 +7,8 @@ export const Route = createFileRoute("/")({
 
 // Central link config — swap real URLs here later.
 const LINKS = {
-  videos: "https://www.youtube.com/watch?v=1OAQ5_R05zU",
+  videoInstallation: "https://www.youtube.com/watch?v=1OAQ5_R05zU",
+  videoMaintenance: "https://youtu.be/hoWbLX3eawM?si=4xwF3xlHuNuYISyR",
   productCards: "#",
   manuals: "#",
   filters: "#",
@@ -104,13 +105,24 @@ function SolidButton({
   );
 }
 
-const RESOURCES = [
+type Resource = {
+  n: string;
+  title: string;
+  body: string;
+  cta?: string;
+  href?: string;
+  links?: { label: string; href: string }[];
+};
+
+const RESOURCES: Resource[] = [
   {
     n: "01",
     title: "Installation & Maintenance Videos",
     body: "Step-by-step guidance on setup, connecting and commissioning your system, routine maintenance, filter changes, cleaning procedures, troubleshooting, and best practices for performance and longevity.",
-    cta: "Watch Videos →",
-    href: LINKS.videos,
+    links: [
+      { label: "Watch Installation →", href: LINKS.videoInstallation },
+      { label: "Watch Maintenance →", href: LINKS.videoMaintenance },
+    ],
   },
   {
     n: "02",
@@ -216,8 +228,14 @@ function AftercarePage() {
                 <p className="mt-4 text-[0.95rem] leading-relaxed text-obsidian/80">
                   {r.body}
                 </p>
-                <div className="mt-auto pt-10">
-                  <ArrowLink href={r.href}>{r.cta}</ArrowLink>
+                <div className="mt-auto pt-10 flex flex-col gap-3 items-start">
+                  {r.links
+                    ? r.links.map((l) => (
+                        <ArrowLink key={l.href} href={l.href}>
+                          {l.label}
+                        </ArrowLink>
+                      ))
+                    : r.href && r.cta && <ArrowLink href={r.href}>{r.cta}</ArrowLink>}
                 </div>
               </article>
             ))}
