@@ -45,7 +45,7 @@ const MODELS: ModelResources[] = [
     image: kinosImg.url,
     videos: "/videos",
     productCard: "#",
-    manual: chuManual.url,
+    manual: kinosManual.url,
     warranty: "#",
   },
   {
