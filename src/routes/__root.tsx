@@ -87,15 +87,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Installation videos, product cards, manuals and warranty support for C11 ice baths.",
+          "Everything you need to set up, maintain, and get the most from your C11 recovery equipment.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "C11 Recovery" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Aftercare & Support — C11 Recovery" },
+      { name: "twitter:description", content: "Everything you need to set up, maintain, and get the most from your C11 recovery equipment." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a5f974fa-672b-47ac-8398-e83249530d52/id-preview-7804cae6--187cb04b-2235-49e1-9705-a525a123cb19.lovable.app-1784291248228.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a5f974fa-672b-47ac-8398-e83249530d52/id-preview-7804cae6--187cb04b-2235-49e1-9705-a525a123cb19.lovable.app-1784291248228.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
