@@ -1,5 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { Instagram, Linkedin } from "lucide-react";
+
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V9.01a8.16 8.16 0 0 0 4.77 1.52V7.09a4.85 4.85 0 0 1-1.84-.4z" />
+  </svg>
+);
 import kinosImg from "@/assets/kinos.png.asset.json";
 import kinosPlusImg from "@/assets/kinos-plus.png.asset.json";
 import hankiImg from "@/assets/hanki.png.asset.json";
@@ -636,16 +643,18 @@ function AftercarePage() {
             <SectionLabel>Follow C11</SectionLabel>
             <div className="flex flex-wrap gap-3">
               {[
-                { name: "Instagram", href: LINKS.instagram },
-                { name: "LinkedIn", href: LINKS.linkedin },
-                { name: "TikTok", href: LINKS.tiktok },
+                { name: "Instagram", href: LINKS.instagram, Icon: Instagram },
+                { name: "LinkedIn", href: LINKS.linkedin, Icon: Linkedin },
+                { name: "TikTok", href: LINKS.tiktok, Icon: TikTokIcon },
               ].map((s) => (
                 <A
                   key={s.name}
                   href={s.href}
-                  className="inline-flex items-center px-5 py-3 border border-obsidian rounded-[2px] text-xs uppercase tracking-[0.2em] font-medium hover:bg-obsidian hover:text-stone-base transition-colors"
+                  aria-label={s.name}
+                  className="inline-flex items-center gap-2 px-5 py-3 border border-obsidian rounded-[2px] text-xs uppercase tracking-[0.2em] font-medium hover:bg-obsidian hover:text-stone-base transition-colors"
                 >
-                  {s.name}
+                  <s.Icon className="w-4 h-4" />
+                  <span>{s.name}</span>
                 </A>
               ))}
             </div>
