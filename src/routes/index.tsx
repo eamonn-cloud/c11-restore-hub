@@ -217,7 +217,7 @@ const MANUAL_TOPICS = [
   "UV lamp replacement",
   "Water replacement & ongoing maintenance",
   "Error codes & troubleshooting",
-  "Warranty information",
+
 ];
 
 const SUPPORT_CATEGORIES = [
