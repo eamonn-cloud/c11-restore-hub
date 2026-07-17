@@ -249,8 +249,66 @@ function AftercarePage() {
         </div>
       </section>
 
+      {/* MODELS */}
+      <section className="bg-stone-base border-b border-obsidian">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-20 md:py-28">
+          <div className="flex items-baseline justify-between flex-wrap gap-6">
+            <SectionLabel>Select your model</SectionLabel>
+            <p className="font-editorial italic text-obsidian/70 text-lg max-w-md">
+              Aftercare tailored to each C11 ice bath.
+            </p>
+          </div>
+
+          <h2 className="mt-6 font-display uppercase font-bold leading-[0.95] tracking-tight text-4xl md:text-5xl max-w-3xl">
+            Choose your pool
+          </h2>
+
+          <div className="mt-14 md:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-obsidian border border-obsidian rounded-[2px] overflow-hidden">
+            {MODELS.map((m, i) => (
+              <article
+                key={m.key}
+                className="bg-stone-base p-8 md:p-10 flex flex-col min-h-[440px]"
+              >
+                <div className="flex items-baseline justify-between">
+                  <span className="font-display text-xs tabular-nums text-obsidian/50 tracking-[0.16em]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span aria-hidden className="text-obsidian/40">✳</span>
+                </div>
+                <h3 className="mt-10 font-display text-3xl md:text-4xl font-bold leading-none uppercase tracking-tight">
+                  {m.name}
+                </h3>
+                <p className="mt-4 font-editorial italic text-obsidian/70 text-base leading-snug">
+                  {m.tagline}
+                </p>
+
+                <ul className="mt-auto pt-10 flex flex-col gap-3 border-t border-obsidian/80">
+                  {[
+                    { label: "Videos", href: m.videos },
+                    { label: "Product Card", href: m.productCard },
+                    { label: "Manual", href: m.manual },
+                    { label: "Warranty", href: m.warranty },
+                  ].map((l) => (
+                    <li key={l.label}>
+                      <A
+                        href={l.href}
+                        className="group flex items-center justify-between text-sm font-medium uppercase tracking-[0.16em] text-obsidian/80 hover:text-deep-current transition-colors"
+                      >
+                        <span>{l.label}</span>
+                        <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+                      </A>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* RESOURCES */}
       <section className="bg-stone-base border-b border-obsidian">
+
         <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <div className="flex items-baseline justify-between flex-wrap gap-6">
             <SectionLabel>Resources</SectionLabel>
