@@ -36,7 +36,7 @@ type ModelResources = {
   videos: string;
   productCard: string;
   manual: string;
-  warranty: string;
+  problems?: string;
 };
 
 const MODELS: ModelResources[] = [
@@ -46,9 +46,9 @@ const MODELS: ModelResources[] = [
     tagline: "Compact chilled ice bath.",
     image: kinosImg.url,
     videos: "/videos",
-    productCard: "#",
+    productCard: kinosOnePager.url,
     manual: kinosManual.url,
-    warranty: "#",
+    problems: kinosProblems.url,
   },
   {
     key: "kinos-plus",
@@ -58,7 +58,6 @@ const MODELS: ModelResources[] = [
     videos: "/videos",
     productCard: "#",
     manual: chuManual.url,
-    warranty: "#",
   },
   {
     key: "hanki",
@@ -68,7 +67,6 @@ const MODELS: ModelResources[] = [
     videos: "/videos",
     productCard: "#",
     manual: chuManual.url,
-    warranty: "#",
   },
   {
     key: "kuura",
@@ -78,7 +76,6 @@ const MODELS: ModelResources[] = [
     videos: "/videos",
     productCard: "#",
     manual: chuManual.url,
-    warranty: "#",
   },
 ];
 
