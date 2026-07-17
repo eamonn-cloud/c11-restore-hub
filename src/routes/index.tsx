@@ -5,6 +5,7 @@ import kinosPlusImg from "@/assets/kinos-plus.png.asset.json";
 import hankiImg from "@/assets/hanki.png.asset.json";
 import kuuraImg from "@/assets/kuura.png.asset.json";
 import chuManual from "@/assets/chu-manual.pdf.asset.json";
+import kinosManual from "@/assets/kinos-manual.pdf.asset.json";
 
 
 
