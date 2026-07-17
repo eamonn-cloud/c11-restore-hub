@@ -235,7 +235,7 @@ const SUPPORT_CATEGORIES = [
   },
   { name: "Setup & Installation", count: 4, articles: [] },
   { name: "Maintenance", count: 6, articles: [] },
-  { name: "Warranty & Returns", count: 3, articles: [] },
+  { name: "Troubleshooting", count: 3, articles: [] },
 ];
 
 function AftercarePage() {
