@@ -187,14 +187,14 @@ const RESOURCES: Resource[] = [
   {
     n: "02",
     title: "Product Cards",
-    body: "A quick overview of each product: key features, technical specs, dimensions, capacity, power requirements, included accessories, warranty details, and main benefits.",
+    body: "A quick overview of each product: key features, technical specs, dimensions, capacity, power requirements, included accessories, and main benefits.",
     cta: "View Product Cards →",
     href: LINKS.productCards,
   },
   {
     n: "03",
-    title: "Manuals & Warranty Information",
-    body: "Full product manuals covering safety, technical specifications, installation, electrical and water connections, commissioning, controller operation, filter and UV lamp maintenance, error codes, troubleshooting, and warranty.",
+    title: "Manuals",
+    body: "Full product manuals covering safety, technical specifications, installation, electrical and water connections, commissioning, controller operation, filter and UV lamp maintenance, error codes, and troubleshooting.",
     cta: "Open Manuals →",
     href: LINKS.manuals,
   },
