@@ -17,6 +17,55 @@ const LINKS = {
   tiktok: "#",
 };
 
+type ModelResources = {
+  key: string;
+  name: string;
+  tagline: string;
+  videos: string;
+  productCard: string;
+  manual: string;
+  warranty: string;
+};
+
+const MODELS: ModelResources[] = [
+  {
+    key: "kinos",
+    name: "Kinos",
+    tagline: "Compact chilled ice bath.",
+    videos: "/videos",
+    productCard: "#",
+    manual: "#",
+    warranty: "#",
+  },
+  {
+    key: "kinos-plus",
+    name: "Kinos Plus",
+    tagline: "Extended capacity, same precision.",
+    videos: "/videos",
+    productCard: "#",
+    manual: "#",
+    warranty: "#",
+  },
+  {
+    key: "hanki",
+    name: "Hanki",
+    tagline: "Twin-bath performance system.",
+    videos: "/videos",
+    productCard: "#",
+    manual: "#",
+    warranty: "#",
+  },
+  {
+    key: "kuura",
+    name: "Kuura",
+    tagline: "Flagship recovery pool.",
+    videos: "/videos",
+    productCard: "#",
+    manual: "#",
+    warranty: "#",
+  },
+];
+
 const isExternal = (href: string) => /^https?:\/\//i.test(href);
 
 function A({
