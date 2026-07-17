@@ -228,8 +228,14 @@ function AftercarePage() {
                 <p className="mt-4 text-[0.95rem] leading-relaxed text-obsidian/80">
                   {r.body}
                 </p>
-                <div className="mt-auto pt-10">
-                  <ArrowLink href={r.href}>{r.cta}</ArrowLink>
+                <div className="mt-auto pt-10 flex flex-col gap-3 items-start">
+                  {r.links
+                    ? r.links.map((l) => (
+                        <ArrowLink key={l.href} href={l.href}>
+                          {l.label}
+                        </ArrowLink>
+                      ))
+                    : r.href && r.cta && <ArrowLink href={r.href}>{r.cta}</ArrowLink>}
                 </div>
               </article>
             ))}
