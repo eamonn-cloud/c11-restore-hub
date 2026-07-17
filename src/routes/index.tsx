@@ -148,6 +148,24 @@ const MANUAL_TOPICS = [
   "Warranty information",
 ];
 
+const SUPPORT_CATEGORIES = [
+  {
+    name: "Ice Baths",
+    count: 5,
+    active: true,
+    articles: [
+      { title: "Chiller is not pumping water after filter change / initial setup", active: true, href: LINKS.manuals },
+      { title: "Error codes: E11, E12 & E13", href: LINKS.manuals },
+      { title: "I have switched on my chiller but the screen is blank", href: LINKS.manuals },
+      { title: "Setup & installation (Ice Baths)", href: LINKS.manuals },
+      { title: "Filter change & UV lamp replacement", href: LINKS.manuals },
+    ],
+  },
+  { name: "Setup & Installation", count: 4, articles: [] },
+  { name: "Maintenance", count: 6, articles: [] },
+  { name: "Warranty & Returns", count: 3, articles: [] },
+];
+
 function AftercarePage() {
   return (
     <main className="font-body text-obsidian bg-stone-base">
