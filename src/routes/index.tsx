@@ -27,6 +27,7 @@ type ModelResources = {
   key: string;
   name: string;
   tagline: string;
+  image: string;
   videos: string;
   productCard: string;
   manual: string;
@@ -38,6 +39,7 @@ const MODELS: ModelResources[] = [
     key: "kinos",
     name: "Kinos",
     tagline: "Compact chilled ice bath.",
+    image: kinosImg.url,
     videos: "/videos",
     productCard: "#",
     manual: "#",
@@ -47,6 +49,7 @@ const MODELS: ModelResources[] = [
     key: "kinos-plus",
     name: "Kinos Plus",
     tagline: "Extended capacity, same precision.",
+    image: kinosPlusImg.url,
     videos: "/videos",
     productCard: "#",
     manual: "#",
@@ -56,6 +59,7 @@ const MODELS: ModelResources[] = [
     key: "hanki",
     name: "Hanki",
     tagline: "Twin-bath performance system.",
+    image: hankiImg.url,
     videos: "/videos",
     productCard: "#",
     manual: "#",
@@ -65,12 +69,14 @@ const MODELS: ModelResources[] = [
     key: "kuura",
     name: "Kuura",
     tagline: "Flagship recovery pool.",
+    image: kuuraImg.url,
     videos: "/videos",
     productCard: "#",
     manual: "#",
     warranty: "#",
   },
 ];
+
 
 const isExternal = (href: string) => /^https?:\/\//i.test(href);
 
