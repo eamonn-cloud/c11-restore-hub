@@ -11,6 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import c11Logo from "../assets/c11-logo.png.asset.json";
+
 
 function NotFoundComponent() {
   return (
@@ -99,6 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/png", href: c11Logo.url },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -146,11 +149,8 @@ function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 bg-stone-base/95 backdrop-blur border-b border-obsidian/15">
       <div className="mx-auto max-w-7xl px-6 md:px-12 h-14 flex items-center justify-between gap-6">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span aria-hidden className="text-obsidian text-sm">✳</span>
-          <span className="text-[11px] uppercase tracking-[0.22em] font-semibold text-obsidian">
-            C11 Recovery
-          </span>
+        <Link to="/" className="flex items-center gap-2 group" aria-label="C11 Recovery - Home">
+          <img src={c11Logo.url} alt="C11 Recovery" className="h-6 md:h-7 w-auto" />
         </Link>
         <nav className="flex items-center gap-6 md:gap-8">
           <Link
