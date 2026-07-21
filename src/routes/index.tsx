@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")({
   component: AftercarePage,
 });
 
-// Central link config — swap real URLs here later.
+// Central link config - swap real URLs here later.
 const CONTACT = {
   whatsappNumber: "+353 85 142 6203",
   whatsappHref: "https://wa.me/353851426203",
@@ -222,7 +222,7 @@ const RESOURCES: Resource[] = [
   {
     n: "02",
     title: "Manuals & Engineering Reference",
-    body: "Full product manuals plus the C11 engineering reference — specs, controller calibration, error code matrix, P01 flow-fault workflow and field maintenance procedures.",
+    body: "Full product manuals plus the C11 engineering reference - specs, controller calibration, error code matrix, P01 flow-fault workflow and field maintenance procedures.",
     links: [
       { label: "Open Manuals →", href: LINKS.manuals },
       { label: "Engineering Reference →", href: "/manual" },
@@ -261,7 +261,7 @@ const MANUAL_TOPICS = [
 const FAQS: { q: string; a: string }[] = [
   {
     q: "What warranty comes with my C11 ice bath?",
-    a: "Every C11 ice bath is covered by a 2-year manufacturer warranty on the chiller and controller, and a 5-year structural warranty on the pool shell. Wear items — filters, UV lamps, seals — are consumables and not covered. Register your unit within 30 days of delivery to activate cover.",
+    a: "Every C11 ice bath is covered by a 2-year manufacturer warranty on the chiller and controller, and a 5-year structural warranty on the pool shell. Wear items - filters, UV lamps, seals - are consumables and not covered. Register your unit within 30 days of delivery to activate cover.",
   },
   {
     q: "How do I register my product?",
@@ -285,7 +285,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Can I leave the ice bath outside in winter?",
-    a: "Yes — the chiller and pool are designed for year-round outdoor use down to –20°C provided the unit is powered and circulating. If you plan to leave it unpowered for more than 48 hours in sub-zero conditions, drain the system fully. Winterisation steps are covered in the manual.",
+    a: "Yes - the chiller and pool are designed for year-round outdoor use down to –20°C provided the unit is powered and circulating. If you plan to leave it unpowered for more than 48 hours in sub-zero conditions, drain the system fully. Winterisation steps are covered in the manual.",
   },
   {
     q: "Do you offer installation?",
@@ -359,7 +359,7 @@ function AftercarePage() {
                 >
                   The full technical
                   <br />
-                  manual — online.
+                  manual - online.
                 </h2>
                 <p className="mt-8 max-w-2xl text-lg leading-relaxed text-stone-base/85">
                   Comparative specs across all four models, controller
@@ -454,7 +454,7 @@ function AftercarePage() {
           <div className="flex items-baseline justify-between flex-wrap gap-6">
             <SectionLabel>Resources</SectionLabel>
             <p className="font-editorial italic text-obsidian/70 text-lg max-w-md">
-              Engineered to restore — supported at every step.
+              Engineered to restore - supported at every step.
             </p>
           </div>
 
@@ -504,7 +504,7 @@ function AftercarePage() {
                 asked.
               </h2>
               <p className="mt-6 font-editorial italic text-lg text-obsidian/70 max-w-sm">
-                Warranty, water chemistry, installation, winterisation — the
+                Warranty, water chemistry, installation, winterisation - the
                 answers most owners look for.
               </p>
               <div className="mt-8">
@@ -558,7 +558,7 @@ function AftercarePage() {
               <p className="mt-8 max-w-2xl text-base md:text-lg leading-relaxed text-stone-base/80">
                 Every C11 ice bath ships with a 2-year chiller warranty and a
                 5-year pool shell warranty. Register within 30 days of delivery
-                so we have your serial number on file — it makes any future
+                so we have your serial number on file - it makes any future
                 service request faster.
               </p>
             </div>
@@ -614,12 +614,12 @@ function AftercarePage() {
                 className="font-editorial italic leading-[1.05] tracking-tight"
                 style={{ fontSize: "clamp(1.75rem, 4.5vw, 3.75rem)" }}
               >
-                Thank you for your purchase — we hope you love your new ice
+                Thank you for your purchase - we hope you love your new ice
                 bath.
               </p>
               <p className="mt-8 max-w-2xl text-base md:text-lg leading-relaxed text-stone-base/80">
                 If C11 has become part of your recovery, we'd love to hear about
-                it. Reading — and leaving — reviews helps other athletes,
+                it. Reading - and leaving - reviews helps other athletes,
                 clinicians, and performance-focused owners discover the brand.
               </p>
             </div>
@@ -648,7 +648,7 @@ function AftercarePage() {
               </h2>
               <p className="mt-6 font-editorial italic text-lg text-obsidian/70 max-w-md">
                 Prefer to speak to someone? Our team is here weekdays across
-                every channel — WhatsApp is the fastest.
+                every channel - WhatsApp is the fastest.
               </p>
               <p className="mt-8 text-xs uppercase tracking-[0.2em] text-obsidian/60">
                 {CONTACT.hours} · {CONTACT.responseTime}
