@@ -27,6 +27,17 @@ export const Route = createFileRoute("/")({
 });
 
 // Central link config — swap real URLs here later.
+const CONTACT = {
+  whatsappNumber: "+353 85 142 6203",
+  whatsappHref: "https://wa.me/353851426203",
+  phoneDisplay: "+353 85 142 6203",
+  phoneHref: "tel:+353851426203",
+  email: "support@c11recovery.com",
+  emailHref: "mailto:support@c11recovery.com",
+  hours: "Mon–Fri · 9:00–17:30 GMT",
+  responseTime: "Replies within 1 working day.",
+};
+
 const LINKS = {
   videos: "/videos",
   productCards: "#",
@@ -37,6 +48,15 @@ const LINKS = {
   instagram: "https://www.instagram.com/c11recovery?igsh=MTExODd2dWRsb2ho&utm_source=qr",
   linkedin: "https://www.linkedin.com/company/c11-recovery/",
   tiktok: "https://www.tiktok.com/@c11recovery?_r=1&_t=ZN-9858JOdo3tO",
+  whatsapp: "https://wa.me/353851426203",
+  phone: "tel:+353851426203",
+  email: "mailto:support@c11recovery.com",
+  register: "mailto:support@c11recovery.com?subject=Product%20Registration",
+  warranty: "mailto:support@c11recovery.com?subject=Warranty%20Claim",
+  service: "mailto:support@c11recovery.com?subject=Service%20Request",
+  privacy: "https://c11recovery.com/privacy-policy/",
+  terms: "https://c11recovery.com/terms-conditions/",
+  returns: "mailto:support@c11recovery.com?subject=Returns%20%26%20Refunds",
 };
 
 type ModelResources = {
@@ -248,10 +268,84 @@ const SUPPORT_CATEGORIES = [
       { title: "Filter change & UV lamp replacement", href: LINKS.manuals },
     ],
   },
-  { name: "Setup & Installation", count: 4, articles: [] },
-  { name: "Maintenance", count: 6, articles: [] },
-  { name: "Troubleshooting", count: 3, articles: [] },
+  {
+    name: "Setup & Installation",
+    count: 4,
+    articles: [
+      { title: "Electrical & plumbing requirements", href: LINKS.manuals },
+      { title: "First fill, priming & commissioning", href: LINKS.manuals },
+      { title: "Pairing the Wi-Fi controller", href: LINKS.chuManual },
+      { title: "Positioning, drainage & clearances", href: LINKS.manuals },
+    ],
+  },
+  {
+    name: "Maintenance",
+    count: 6,
+    articles: [
+      { title: "Weekly & monthly maintenance schedule", href: LINKS.manuals },
+      { title: "Water chemistry: ozone, pH & sanitiser", href: LINKS.manuals },
+      { title: "Replacing filter cartridges", href: LINKS.filters },
+      { title: "UV lamp lifespan & replacement", href: LINKS.manuals },
+      { title: "Cleaning the shell & fittings", href: LINKS.manuals },
+      { title: "Winterisation & holiday mode", href: LINKS.manuals },
+    ],
+  },
+  {
+    name: "Troubleshooting",
+    count: 5,
+    articles: [
+      { title: "Unit won't power on", href: LINKS.manuals },
+      { title: "Water not reaching set temperature", href: LINKS.manuals },
+      { title: "Cloudy or discoloured water", href: LINKS.manuals },
+      { title: "Noisy pump or vibration", href: LINKS.manuals },
+      { title: "Leaks around hose fittings", href: LINKS.manuals },
+    ],
+  },
 ];
+
+const FAQS: { q: string; a: string }[] = [
+  {
+    q: "What warranty comes with my C11 ice bath?",
+    a: "Every C11 ice bath is covered by a 2-year manufacturer warranty on the chiller and controller, and a 5-year structural warranty on the pool shell. Wear items — filters, UV lamps, seals — are consumables and not covered. Register your unit within 30 days of delivery to activate cover.",
+  },
+  {
+    q: "How do I register my product?",
+    a: "Email support@c11recovery.com with your name, delivery address, model, and serial number (found on the silver plate on the chiller housing). We'll confirm registration and file your warranty on our side.",
+  },
+  {
+    q: "Where do I find my serial number?",
+    a: "The serial number is printed on the silver rating plate on the side or rear of the chiller unit. It begins with the model code (e.g. KIN-, KP-, HAN-, KUU-) followed by a batch and unit number.",
+  },
+  {
+    q: "What water chemistry should I run?",
+    a: "C11 ice baths run on ozone as the primary sanitiser with light chlorine or bromine backup. Keep pH between 7.2 and 7.6. We recommend testing water twice weekly and doing a full water change every 4–6 weeks depending on use.",
+  },
+  {
+    q: "How often should I change the filter?",
+    a: "Rinse the cartridge weekly and replace it every 4–8 weeks depending on bather load. Replace the UV lamp every 12 months. Order genuine filters via the Replacement Filters button on this page.",
+  },
+  {
+    q: "What are the electrical and plumbing requirements?",
+    a: "Kinos and Kinos Plus run on a standard 13A / 230V socket. Hanki and Kuura require a dedicated 16A supply. All models need a level base, a nearby drain for water changes, and a covered position for the chiller unit. Full specs are in the manual for each model.",
+  },
+  {
+    q: "Can I leave the ice bath outside in winter?",
+    a: "Yes — the chiller and pool are designed for year-round outdoor use down to –20°C provided the unit is powered and circulating. If you plan to leave it unpowered for more than 48 hours in sub-zero conditions, drain the system fully. Winterisation steps are covered in the manual.",
+  },
+  {
+    q: "Do you offer installation?",
+    a: "White-glove installation is available across Ireland and the UK for Hanki and Kuura. Kinos and Kinos Plus are designed for owner setup with the guidance of the installation video and manual. Contact us for an install quote.",
+  },
+  {
+    q: "How do I return my order?",
+    a: "Unused, undamaged units can be returned within 14 days of delivery under our returns policy. Email support@c11recovery.com with your order number to start the process.",
+  },
+  {
+    q: "What if I need spare parts other than filters?",
+    a: "For pumps, seals, controllers, hoses, covers or steps, contact support with your model and serial number and we'll quote genuine parts and lead time.",
+  },
+];
+
 
 function AftercarePage() {
   return (
@@ -290,6 +384,124 @@ function AftercarePage() {
                 <span>{s}</span>
               </span>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section className="bg-stone-base border-b border-obsidian">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-20 md:py-28">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <div className="lg:col-span-5">
+              <SectionLabel>Talk to us</SectionLabel>
+              <h2
+                className="mt-6 font-display uppercase font-bold leading-[0.9] tracking-[-0.01em]"
+                style={{ fontSize: "clamp(2.25rem, 5vw, 4rem)" }}
+              >
+                Human support,
+                <br />
+                on demand.
+              </h2>
+              <p className="mt-6 font-editorial italic text-lg text-obsidian/70 max-w-md">
+                Prefer to speak to someone? Our team is here weekdays across
+                every channel — WhatsApp is the fastest.
+              </p>
+              <p className="mt-8 text-xs uppercase tracking-[0.2em] text-obsidian/60">
+                {CONTACT.hours} · {CONTACT.responseTime}
+              </p>
+            </div>
+
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-px bg-obsidian border border-obsidian rounded-[2px] overflow-hidden">
+              {/* WhatsApp — live */}
+              <A
+                href={LINKS.whatsapp}
+                className="bg-stone-base p-8 md:p-10 flex flex-col justify-between hover:bg-thermal-rose transition-colors group"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs uppercase tracking-[0.2em] font-medium">
+                    WhatsApp
+                  </span>
+                  <span className="inline-flex items-center gap-2 text-[0.65rem] uppercase tracking-[0.2em] font-medium text-deep-current">
+                    <span className="inline-block w-2 h-2 rounded-full bg-deep-current animate-pulse" />
+                    Live
+                  </span>
+                </div>
+                <div className="mt-16">
+                  <div className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight leading-none">
+                    Chat now
+                  </div>
+                  <div className="mt-3 font-editorial italic text-obsidian/70">
+                    {CONTACT.whatsappNumber}
+                  </div>
+                  <div className="mt-6 text-sm uppercase tracking-[0.16em] font-medium border-b border-obsidian pb-1 inline-flex items-center gap-2">
+                    Open WhatsApp
+                    <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+                  </div>
+                </div>
+              </A>
+
+              {/* Phone */}
+              <A
+                href={LINKS.phone}
+                className="bg-stone-base p-8 md:p-10 flex flex-col justify-between hover:bg-soft-mineral/40 transition-colors group"
+              >
+                <span className="text-xs uppercase tracking-[0.2em] font-medium">Phone</span>
+                <div className="mt-16">
+                  <div className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight leading-none">
+                    Call the team
+                  </div>
+                  <div className="mt-3 font-editorial italic text-obsidian/70">
+                    {CONTACT.phoneDisplay}
+                  </div>
+                  <div className="mt-6 text-sm uppercase tracking-[0.16em] font-medium border-b border-obsidian pb-1 inline-flex items-center gap-2">
+                    Dial now
+                    <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+                  </div>
+                </div>
+              </A>
+
+              {/* Email */}
+              <A
+                href={LINKS.email}
+                className="bg-stone-base p-8 md:p-10 flex flex-col justify-between hover:bg-soft-mineral/40 transition-colors group"
+              >
+                <span className="text-xs uppercase tracking-[0.2em] font-medium">Email</span>
+                <div className="mt-16">
+                  <div className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight leading-none">
+                    Send a note
+                  </div>
+                  <div className="mt-3 font-editorial italic text-obsidian/70 break-all">
+                    {CONTACT.email}
+                  </div>
+                  <div className="mt-6 text-sm uppercase tracking-[0.16em] font-medium border-b border-obsidian pb-1 inline-flex items-center gap-2">
+                    Write to support
+                    <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+                  </div>
+                </div>
+              </A>
+
+              {/* Service request */}
+              <A
+                href={LINKS.service}
+                className="bg-obsidian text-stone-base p-8 md:p-10 flex flex-col justify-between hover:bg-deep-current transition-colors group"
+              >
+                <span className="text-xs uppercase tracking-[0.2em] font-medium text-stone-base/80">
+                  Service request
+                </span>
+                <div className="mt-16">
+                  <div className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight leading-none">
+                    Book a callback
+                  </div>
+                  <div className="mt-3 font-editorial italic text-stone-base/70">
+                    Warranty, install & repairs
+                  </div>
+                  <div className="mt-6 text-sm uppercase tracking-[0.16em] font-medium border-b border-current pb-1 inline-flex items-center gap-2">
+                    Raise a ticket
+                    <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+                  </div>
+                </div>
+              </A>
+            </div>
           </div>
         </div>
       </section>
@@ -569,11 +781,91 @@ function AftercarePage() {
 
               <div className="mt-10 flex flex-wrap items-center gap-6">
                 <ArrowLink href={LINKS.manuals}>Read full article →</ArrowLink>
-                <span className="font-editorial italic text-obsidian/60">
-                  Still stuck? Reach out through the manuals section.
-                </span>
+                <ArrowLink href={LINKS.whatsapp}>Still stuck? WhatsApp us →</ArrowLink>
               </div>
             </article>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-stone-base border-b border-obsidian">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-20 md:py-28">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <div className="lg:col-span-4">
+              <SectionLabel>FAQ</SectionLabel>
+              <h2 className="mt-6 font-display uppercase font-bold leading-[0.95] tracking-tight text-4xl md:text-5xl">
+                Frequently
+                <br />
+                asked.
+              </h2>
+              <p className="mt-6 font-editorial italic text-lg text-obsidian/70 max-w-sm">
+                Warranty, water chemistry, installation, winterisation — the
+                answers most owners look for.
+              </p>
+              <div className="mt-8">
+                <ArrowLink href={LINKS.whatsapp}>Can't find it? Ask us →</ArrowLink>
+              </div>
+            </div>
+
+            <ul className="lg:col-span-8 border-t border-obsidian">
+              {FAQS.map((f, i) => (
+                <li key={f.q} className="border-b border-obsidian/80">
+                  <details className="group">
+                    <summary className="cursor-pointer list-none py-6 flex items-baseline gap-6">
+                      <span className="font-display text-xs tabular-nums text-obsidian/50 w-8 shrink-0">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="flex-1 font-display text-lg md:text-xl font-bold uppercase tracking-tight leading-tight">
+                        {f.q}
+                      </span>
+                      <span
+                        aria-hidden
+                        className="text-2xl leading-none text-obsidian/60 transition-transform group-open:rotate-45"
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <p className="pb-6 pl-14 pr-10 text-[0.95rem] leading-relaxed text-obsidian/80 max-w-3xl">
+                      {f.a}
+                    </p>
+                  </details>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* WARRANTY & REGISTRATION */}
+      <section className="bg-obsidian text-stone-base border-b border-stone-base/20">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-20 md:py-28">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+            <div className="lg:col-span-8">
+              <SectionLabel tone="stone">Warranty & Registration</SectionLabel>
+              <h2
+                className="mt-6 font-display font-bold uppercase leading-[0.9] tracking-[-0.01em]"
+                style={{ fontSize: "clamp(2.25rem, 5.5vw, 4.5rem)" }}
+              >
+                Register your
+                <br />
+                unit in minutes.
+              </h2>
+              <p className="mt-8 max-w-2xl text-base md:text-lg leading-relaxed text-stone-base/80">
+                Every C11 ice bath ships with a 2-year chiller warranty and a
+                5-year pool shell warranty. Register within 30 days of delivery
+                so we have your serial number on file — it makes any future
+                service request faster.
+              </p>
+            </div>
+            <div className="lg:col-span-4 lg:justify-self-end flex flex-col gap-3">
+              <SolidButton href={LINKS.register} variant="stone">
+                Register My Unit →
+              </SolidButton>
+              <ArrowLink href={LINKS.warranty} tone="stone">
+                Make a Warranty Claim →
+              </ArrowLink>
+            </div>
           </div>
         </div>
       </section>
@@ -660,12 +952,26 @@ function AftercarePage() {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs uppercase tracking-[0.2em] text-obsidian/70">
+          <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-start md:justify-between text-xs uppercase tracking-[0.2em] text-obsidian/70">
+            <div className="flex flex-wrap gap-x-6 gap-y-3">
+              <A href={LINKS.whatsapp} className="hover:text-deep-current transition-colors">WhatsApp</A>
+              <A href={LINKS.phone} className="hover:text-deep-current transition-colors">{CONTACT.phoneDisplay}</A>
+              <A href={LINKS.email} className="hover:text-deep-current transition-colors normal-case tracking-normal">{CONTACT.email}</A>
+            </div>
+            <div className="flex flex-wrap gap-x-6 gap-y-3">
+              <A href={LINKS.privacy} className="hover:text-deep-current transition-colors">Privacy</A>
+              <A href={LINKS.terms} className="hover:text-deep-current transition-colors">Terms</A>
+              <A href={LINKS.returns} className="hover:text-deep-current transition-colors">Returns</A>
+            </div>
+          </div>
+
+          <div className="mt-8 pt-6 border-t border-obsidian/30 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs uppercase tracking-[0.2em] text-obsidian/70">
             <span>©2026 C11® All Rights Reserved</span>
             <span className="font-editorial italic normal-case tracking-normal text-base text-obsidian">
               engineered to restore.
             </span>
           </div>
+
         </div>
       </section>
     </main>
