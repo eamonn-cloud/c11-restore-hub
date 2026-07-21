@@ -794,7 +794,7 @@ function ManualPage() {
 
             {/* Email */}
             <a
-              href="mailto:support@c11recovery.com"
+              href="mailto:service@c11recovery.com"
               className="group flex flex-col p-6 md:p-8 min-h-[240px] sm:border-r border-obsidian/25 hover:bg-obsidian/[0.04] transition-colors"
             >
               <span className="text-xs uppercase tracking-[0.22em] font-medium">Email</span>
@@ -802,7 +802,7 @@ function ManualPage() {
                 <span className="block mt-8">Send a note</span>
               </H3>
               <div className="mt-3 font-editorial italic text-lg text-obsidian/80 break-all">
-                support@c11recovery.com
+                service@c11recovery.com
               </div>
               <div className="mt-auto pt-8 flex items-center justify-between text-xs uppercase tracking-[0.22em] font-medium border-b border-obsidian pb-2">
                 <span>Write to support</span>
@@ -812,7 +812,7 @@ function ManualPage() {
 
             {/* Service request — dark tile */}
             <a
-              href="mailto:support@c11recovery.com?subject=Service%20Request%20%E2%80%94%20Callback"
+              href="mailto:service@c11recovery.com?subject=Service%20Request%20%E2%80%94%20Callback"
               className="group flex flex-col p-6 md:p-8 min-h-[240px] bg-obsidian text-stone-base hover:bg-obsidian/90 transition-colors"
             >
               <span className="text-xs uppercase tracking-[0.22em] font-medium text-stone-base/80">

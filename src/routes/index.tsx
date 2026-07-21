@@ -32,8 +32,8 @@ const CONTACT = {
   whatsappHref: "https://wa.me/353851426203",
   phoneDisplay: "+353 85 142 6203",
   phoneHref: "tel:+353851426203",
-  email: "support@c11recovery.com",
-  emailHref: "mailto:support@c11recovery.com",
+  email: "service@c11recovery.com",
+  emailHref: "mailto:service@c11recovery.com",
   hours: "Mon–Fri · 9:00–17:30 GMT",
   responseTime: "Replies within 1 working day.",
 };
@@ -50,13 +50,13 @@ const LINKS = {
   tiktok: "https://www.tiktok.com/@c11recovery?_r=1&_t=ZN-9858JOdo3tO",
   whatsapp: "https://wa.me/353851426203",
   phone: "tel:+353851426203",
-  email: "mailto:support@c11recovery.com",
-  register: "mailto:support@c11recovery.com?subject=Product%20Registration",
-  warranty: "mailto:support@c11recovery.com?subject=Warranty%20Claim",
-  service: "mailto:support@c11recovery.com?subject=Service%20Request",
+  email: "mailto:service@c11recovery.com",
+  register: "mailto:service@c11recovery.com?subject=Product%20Registration",
+  warranty: "mailto:service@c11recovery.com?subject=Warranty%20Claim",
+  service: "mailto:service@c11recovery.com?subject=Service%20Request",
   privacy: "https://c11recovery.com/privacy-policy/",
   terms: "https://c11recovery.com/terms-conditions/",
-  returns: "mailto:support@c11recovery.com?subject=Returns%20%26%20Refunds",
+  returns: "mailto:service@c11recovery.com?subject=Returns%20%26%20Refunds",
 };
 
 type ModelResources = {
@@ -265,7 +265,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How do I register my product?",
-    a: "Email support@c11recovery.com with your name, delivery address, model, and serial number (found on the silver plate on the chiller housing). We'll confirm registration and file your warranty on our side.",
+    a: "Email service@c11recovery.com with your name, delivery address, model, and serial number (found on the silver plate on the chiller housing). We'll confirm registration and file your warranty on our side.",
   },
   {
     q: "Where do I find my serial number?",
@@ -293,7 +293,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How do I return my order?",
-    a: "Unused, undamaged units can be returned within 14 days of delivery under our returns policy. Email support@c11recovery.com with your order number to start the process.",
+    a: "Unused, undamaged units can be returned within 14 days of delivery under our returns policy. Email service@c11recovery.com with your order number to start the process.",
   },
   {
     q: "What if I need spare parts other than filters?",
