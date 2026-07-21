@@ -132,8 +132,58 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <SiteHeader />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
   );
 }
+
+function SiteHeader() {
+  const navLink =
+    "text-[11px] uppercase tracking-[0.18em] font-medium text-obsidian/70 hover:text-obsidian transition-colors";
+  const activeCls = "text-obsidian border-b border-obsidian";
+  return (
+    <header className="sticky top-0 z-50 bg-stone-base/95 backdrop-blur border-b border-obsidian/15">
+      <div className="mx-auto max-w-7xl px-6 md:px-12 h-14 flex items-center justify-between gap-6">
+        <Link to="/" className="flex items-center gap-2 group">
+          <span aria-hidden className="text-obsidian text-sm">✳</span>
+          <span className="text-[11px] uppercase tracking-[0.22em] font-semibold text-obsidian">
+            C11 Recovery
+          </span>
+        </Link>
+        <nav className="flex items-center gap-6 md:gap-8">
+          <Link
+            to="/"
+            activeOptions={{ exact: true }}
+            className={navLink}
+            activeProps={{ className: `${navLink} ${activeCls} pb-0.5` }}
+          >
+            Aftercare
+          </Link>
+          <Link
+            to="/videos"
+            className={navLink}
+            activeProps={{ className: `${navLink} ${activeCls} pb-0.5` }}
+          >
+            Videos
+          </Link>
+          <Link
+            to="/manual"
+            className={navLink}
+            activeProps={{ className: `${navLink} ${activeCls} pb-0.5` }}
+          >
+            Manual
+          </Link>
+          <a
+            href="mailto:service@c11recovery.com"
+            className="hidden md:inline text-[11px] uppercase tracking-[0.18em] font-medium text-deep-current hover:text-obsidian transition-colors"
+          >
+            Contact →
+          </a>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
