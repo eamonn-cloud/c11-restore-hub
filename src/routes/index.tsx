@@ -488,37 +488,6 @@ function AftercarePage() {
         </div>
       </section>
 
-      {/* MANUALS CONTENTS */}
-      <section className="bg-stone-base border-b border-obsidian">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-20 md:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-            <div className="lg:col-span-4">
-              <SectionLabel>Inside the manuals</SectionLabel>
-              <h2 className="mt-6 font-display uppercase font-bold leading-[0.95] tracking-tight text-4xl md:text-5xl">
-                What the manuals cover
-              </h2>
-              <p className="mt-6 font-editorial italic text-lg text-obsidian/70 max-w-sm">
-                A complete reference for owning, operating, and maintaining your
-                C11 system.
-              </p>
-            </div>
-
-            <ul className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-10 border-t border-obsidian">
-              {MANUAL_TOPICS.map((t, i) => (
-                <li
-                  key={t}
-                  className="border-b border-obsidian/80 py-4 flex items-baseline gap-4 text-[0.95rem]"
-                >
-                  <span className="font-display text-xs tabular-nums text-obsidian/50 w-6">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span>{t}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
 
 
 
