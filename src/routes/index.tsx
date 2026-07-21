@@ -425,7 +425,7 @@ function AftercarePage() {
                 <ul className="mt-auto pt-10 flex flex-col gap-3 border-t border-obsidian/80">
                   {[
                     { label: "Videos", href: m.videos },
-                    { label: "Product Card", href: m.productCard },
+                    ...(m.productCard && m.productCard !== "#" ? [{ label: "Product Card", href: m.productCard }] : []),
                     { label: "Manual", href: m.manual },
                     ...(m.controllerManual ? [{ label: "Wi-Fi Controller Manual", href: m.controllerManual }] : []),
                     ...(m.problems ? [{ label: "Problems & Solutions", href: m.problems }] : []),
