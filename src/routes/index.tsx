@@ -343,7 +343,41 @@ function AftercarePage() {
         </div>
       </section>
 
-
+      {/* ENGINEERING REFERENCE BANNER */}
+      <section className="bg-deep-current text-stone-base border-b border-obsidian">
+        <A
+          href="/manual"
+          className="block group"
+        >
+          <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-16 md:py-24">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+              <div className="lg:col-span-8">
+                <SectionLabel tone="stone">Engineering Reference</SectionLabel>
+                <h2
+                  className="mt-6 font-display uppercase font-bold leading-[0.9] tracking-[-0.01em]"
+                  style={{ fontSize: "clamp(2.25rem, 5.5vw, 4.5rem)" }}
+                >
+                  The full technical
+                  <br />
+                  manual — online.
+                </h2>
+                <p className="mt-8 max-w-2xl text-lg leading-relaxed text-stone-base/85">
+                  Comparative specs across all four models, controller
+                  calibration, the complete error &amp; P-code matrix, flow-fault
+                  workflow, and field maintenance procedures. The fastest way
+                  to diagnose and resolve an issue yourself.
+                </p>
+              </div>
+              <div className="lg:col-span-4 lg:justify-self-end">
+                <span className="inline-flex items-center gap-3 px-8 py-4 border border-stone-base rounded-[2px] text-sm uppercase tracking-[0.2em] font-medium group-hover:bg-stone-base group-hover:text-obsidian transition-colors">
+                  Open Engineering Manual
+                  <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </A>
+      </section>
 
 
       {/* MODELS */}
