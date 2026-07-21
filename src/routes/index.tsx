@@ -268,9 +268,39 @@ const SUPPORT_CATEGORIES = [
       { title: "Filter change & UV lamp replacement", href: LINKS.manuals },
     ],
   },
-  { name: "Setup & Installation", count: 4, articles: [] },
-  { name: "Maintenance", count: 6, articles: [] },
-  { name: "Troubleshooting", count: 3, articles: [] },
+  {
+    name: "Setup & Installation",
+    count: 4,
+    articles: [
+      { title: "Electrical & plumbing requirements", href: LINKS.manuals },
+      { title: "First fill, priming & commissioning", href: LINKS.manuals },
+      { title: "Pairing the Wi-Fi controller", href: LINKS.chuManual },
+      { title: "Positioning, drainage & clearances", href: LINKS.manuals },
+    ],
+  },
+  {
+    name: "Maintenance",
+    count: 6,
+    articles: [
+      { title: "Weekly & monthly maintenance schedule", href: LINKS.manuals },
+      { title: "Water chemistry: ozone, pH & sanitiser", href: LINKS.manuals },
+      { title: "Replacing filter cartridges", href: LINKS.filters },
+      { title: "UV lamp lifespan & replacement", href: LINKS.manuals },
+      { title: "Cleaning the shell & fittings", href: LINKS.manuals },
+      { title: "Winterisation & holiday mode", href: LINKS.manuals },
+    ],
+  },
+  {
+    name: "Troubleshooting",
+    count: 5,
+    articles: [
+      { title: "Unit won't power on", href: LINKS.manuals },
+      { title: "Water not reaching set temperature", href: LINKS.manuals },
+      { title: "Cloudy or discoloured water", href: LINKS.manuals },
+      { title: "Noisy pump or vibration", href: LINKS.manuals },
+      { title: "Leaks around hose fittings", href: LINKS.manuals },
+    ],
+  },
 ];
 
 function AftercarePage() {
