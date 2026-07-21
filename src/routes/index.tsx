@@ -303,6 +303,50 @@ const SUPPORT_CATEGORIES = [
   },
 ];
 
+const FAQS: { q: string; a: string }[] = [
+  {
+    q: "What warranty comes with my C11 ice bath?",
+    a: "Every C11 ice bath is covered by a 2-year manufacturer warranty on the chiller and controller, and a 5-year structural warranty on the pool shell. Wear items — filters, UV lamps, seals — are consumables and not covered. Register your unit within 30 days of delivery to activate cover.",
+  },
+  {
+    q: "How do I register my product?",
+    a: "Email support@c11recovery.com with your name, delivery address, model, and serial number (found on the silver plate on the chiller housing). We'll confirm registration and file your warranty on our side.",
+  },
+  {
+    q: "Where do I find my serial number?",
+    a: "The serial number is printed on the silver rating plate on the side or rear of the chiller unit. It begins with the model code (e.g. KIN-, KP-, HAN-, KUU-) followed by a batch and unit number.",
+  },
+  {
+    q: "What water chemistry should I run?",
+    a: "C11 ice baths run on ozone as the primary sanitiser with light chlorine or bromine backup. Keep pH between 7.2 and 7.6. We recommend testing water twice weekly and doing a full water change every 4–6 weeks depending on use.",
+  },
+  {
+    q: "How often should I change the filter?",
+    a: "Rinse the cartridge weekly and replace it every 4–8 weeks depending on bather load. Replace the UV lamp every 12 months. Order genuine filters via the Replacement Filters button on this page.",
+  },
+  {
+    q: "What are the electrical and plumbing requirements?",
+    a: "Kinos and Kinos Plus run on a standard 13A / 230V socket. Hanki and Kuura require a dedicated 16A supply. All models need a level base, a nearby drain for water changes, and a covered position for the chiller unit. Full specs are in the manual for each model.",
+  },
+  {
+    q: "Can I leave the ice bath outside in winter?",
+    a: "Yes — the chiller and pool are designed for year-round outdoor use down to –20°C provided the unit is powered and circulating. If you plan to leave it unpowered for more than 48 hours in sub-zero conditions, drain the system fully. Winterisation steps are covered in the manual.",
+  },
+  {
+    q: "Do you offer installation?",
+    a: "White-glove installation is available across Ireland and the UK for Hanki and Kuura. Kinos and Kinos Plus are designed for owner setup with the guidance of the installation video and manual. Contact us for an install quote.",
+  },
+  {
+    q: "How do I return my order?",
+    a: "Unused, undamaged units can be returned within 14 days of delivery under our returns policy. Email support@c11recovery.com with your order number to start the process.",
+  },
+  {
+    q: "What if I need spare parts other than filters?",
+    a: "For pumps, seals, controllers, hoses, covers or steps, contact support with your model and serial number and we'll quote genuine parts and lead time.",
+  },
+];
+
+
 function AftercarePage() {
   return (
     <main className="font-body text-obsidian bg-stone-base">
