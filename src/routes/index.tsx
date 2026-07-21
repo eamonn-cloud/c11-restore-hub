@@ -27,6 +27,17 @@ export const Route = createFileRoute("/")({
 });
 
 // Central link config — swap real URLs here later.
+const CONTACT = {
+  whatsappNumber: "+353 85 142 6203",
+  whatsappHref: "https://wa.me/353851426203",
+  phoneDisplay: "+353 85 142 6203",
+  phoneHref: "tel:+353851426203",
+  email: "support@c11recovery.com",
+  emailHref: "mailto:support@c11recovery.com",
+  hours: "Mon–Fri · 9:00–17:30 GMT",
+  responseTime: "Replies within 1 working day.",
+};
+
 const LINKS = {
   videos: "/videos",
   productCards: "#",
@@ -37,6 +48,15 @@ const LINKS = {
   instagram: "https://www.instagram.com/c11recovery?igsh=MTExODd2dWRsb2ho&utm_source=qr",
   linkedin: "https://www.linkedin.com/company/c11-recovery/",
   tiktok: "https://www.tiktok.com/@c11recovery?_r=1&_t=ZN-9858JOdo3tO",
+  whatsapp: "https://wa.me/353851426203",
+  phone: "tel:+353851426203",
+  email: "mailto:support@c11recovery.com",
+  register: "mailto:support@c11recovery.com?subject=Product%20Registration",
+  warranty: "mailto:support@c11recovery.com?subject=Warranty%20Claim",
+  service: "mailto:support@c11recovery.com?subject=Service%20Request",
+  privacy: "https://c11recovery.com/privacy-policy/",
+  terms: "https://c11recovery.com/terms-conditions/",
+  returns: "mailto:support@c11recovery.com?subject=Returns%20%26%20Refunds",
 };
 
 type ModelResources = {
