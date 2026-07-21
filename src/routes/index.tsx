@@ -221,19 +221,19 @@ const RESOURCES: Resource[] = [
   },
   {
     n: "02",
-    title: "Product Cards",
-    body: "A quick overview of each product: key features, technical specs, dimensions, capacity, power requirements, included accessories, and main benefits.",
-    cta: "View Product Cards →",
-    href: LINKS.productCards,
-  },
-  {
-    n: "03",
     title: "Manuals & Engineering Reference",
     body: "Full product manuals plus the C11 engineering reference — specs, controller calibration, error code matrix, P01 flow-fault workflow and field maintenance procedures.",
     links: [
       { label: "Open Manuals →", href: LINKS.manuals },
       { label: "Engineering Reference →", href: "/manual" },
     ],
+  },
+  {
+    n: "03",
+    title: "Replacement Filters & Parts",
+    body: "Genuine replacement filters and consumables for all C11 ice bath models. Order direct to keep your system running at spec.",
+    cta: "Shop Filters →",
+    href: LINKS.filters,
   },
 ];
 
