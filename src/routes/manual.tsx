@@ -4,13 +4,13 @@ import type { ReactNode } from "react";
 export const Route = createFileRoute("/manual")({
   head: () => ({
     meta: [
-      { title: "Engineering & Operations Manual — C11 Recovery" },
+      { title: "Engineering & Operations Manual - C11 Recovery" },
       {
         name: "description",
         content:
           "Full engineering reference for Kinos, Kinos Plus, Hanki and Kuura recovery systems: specifications, operating parameters, controller calibration, error codes and maintenance procedures.",
       },
-      { property: "og:title", content: "Engineering & Operations Manual — C11 Recovery" },
+      { property: "og:title", content: "Engineering & Operations Manual - C11 Recovery" },
       {
         property: "og:description",
         content:
@@ -159,7 +159,7 @@ function ManualPage() {
           </h1>
           <p className="mt-10 font-editorial italic text-xl md:text-2xl leading-snug max-w-3xl text-stone-base/85">
             Everything an owner or technician needs to configure, maintain and diagnose the C11
-            Recovery hydrotherapy fleet — Kinos, Kinos Plus, Hanki and Kuura.
+            Recovery hydrotherapy fleet - Kinos, Kinos Plus, Hanki and Kuura.
           </p>
 
           {/* TOC */}
@@ -196,7 +196,7 @@ function ManualPage() {
           <H2>System Configurations</H2>
           <div className="mt-8 space-y-6">
             <Lede>
-              Four systems engineered by Avantopool — three integrated cabinets and one modular
+              Four systems engineered by Avantopool - three integrated cabinets and one modular
               basin paired with an external Cooling &amp; Heating Unit.
             </Lede>
             <Body>
@@ -273,7 +273,7 @@ function ManualPage() {
               conductivity of the water and accelerates galvanic corrosion between dissimilar
               metals in the hydraulic loop, which can produce pinhole leaks in the plates. If a
               leak occurs, high-pressure refrigerant contaminates the water loop and water enters
-              the sealed compressor — destroying the thermal machinery and voiding the warranty.
+              the sealed compressor - destroying the thermal machinery and voiding the warranty.
             </Body>
             <Body>
               Essential oils and bath-bomb binders leave organic residues on the quartz sleeve of
@@ -297,7 +297,7 @@ function ManualPage() {
               {
                 n: "03",
                 t: "Pre-plunge Hygiene",
-                b: "Require all users to shower before entering. Removes body oils, lotions and cosmetics — protects filters and extends water life.",
+                b: "Require all users to shower before entering. Removes body oils, lotions and cosmetics - protects filters and extends water life.",
               },
             ].map((c) => (
               <div
@@ -403,7 +403,7 @@ function ManualPage() {
 
           <div className="mt-10 grid md:grid-cols-2 gap-6">
             <div className="border border-obsidian/25 p-6 rounded-[2px]">
-              <H3>Integrated units — Kinos, Kinos Plus, Kuura</H3>
+              <H3>Integrated units - Kinos, Kinos Plus, Kuura</H3>
               <p className="mt-3 text-obsidian/85 leading-relaxed">
                 Maintain at least <strong>10–15 cm</strong> of clearance between the ventilation
                 grilles on the long sides of the cabinet and any wall or solid structure. Never
@@ -414,7 +414,7 @@ function ManualPage() {
               </pre>
             </div>
             <div className="border border-obsidian/25 p-6 rounded-[2px]">
-              <H3>External unit — Hanki CHU</H3>
+              <H3>External unit - Hanki CHU</H3>
               <p className="mt-3 text-obsidian/85 leading-relaxed">
                 Provide a minimum clearance of <strong>150 cm</strong> in front of the exhaust fan.
                 Never install the CHU inside a sealed cabinet, box or unventilated storage room.
@@ -439,7 +439,7 @@ function ManualPage() {
               <H3>Kinos & Kinos Plus</H3>
               <p className="mt-3 text-obsidian/85 leading-relaxed">
                 Designed primarily for indoor use. May be placed outdoors only if completely
-                sheltered from rain, snow and direct sunlight — for example on a glazed patio or
+                sheltered from rain, snow and direct sunlight - for example on a glazed patio or
                 enclosed balcony.
               </p>
             </div>
@@ -462,7 +462,7 @@ function ManualPage() {
           <H2>Never Sleep Below Freezing</H2>
           <div className="mt-8 space-y-6">
             <Lede>
-              Sleep Mode reduces power consumption by 30–40% by disabling the circulation pump —
+              Sleep Mode reduces power consumption by 30–40% by disabling the circulation pump -
               which is exactly why it must not be used in cold weather.
             </Lede>
           </div>
@@ -479,7 +479,7 @@ function ManualPage() {
               ],
               [
                 "Winter operation",
-                "In freezing weather, run the system continuously in Automatic Mode — constant water movement prevents ice formation. If the system will be unused through winter, drain all water from the pool and CHU, disconnect the hoses, and store the equipment in a dry, heated indoor space.",
+                "In freezing weather, run the system continuously in Automatic Mode - constant water movement prevents ice formation. If the system will be unused through winter, drain all water from the pool and CHU, disconnect the hoses, and store the equipment in a dry, heated indoor space.",
               ],
             ].map(([t, b]) => (
               <div key={t} className="grid md:grid-cols-[220px_1fr] gap-6 py-6">
@@ -523,7 +523,7 @@ function ManualPage() {
               </pre>
               <p className="mt-4 text-obsidian/85 leading-relaxed">
                 Automatic Mode applies a programmed temperature-differential delay so the system
-                does not cycle rapidly between cooling and heating near setpoint — this protects
+                does not cycle rapidly between cooling and heating near setpoint - this protects
                 the compressor from premature wear.
               </p>
             </div>
@@ -544,7 +544,7 @@ function ManualPage() {
             <div>
               <H3>Clock & operational timers</H3>
               <ol className="mt-4 space-y-2 text-obsidian/85 leading-relaxed list-decimal list-inside">
-                <li>Hold the clock icon for 5 seconds — hour and minute digits will flash.</li>
+                <li>Hold the clock icon for 5 seconds - hour and minute digits will flash.</li>
                 <li>Tap mode / time to select hour; adjust with up / down arrows.</li>
                 <li>Tap mode / time again to select minute; adjust with arrows.</li>
                 <li>
@@ -613,7 +613,7 @@ function ManualPage() {
       <section id="p01" className="border-b border-obsidian/15">
         <div className="mx-auto max-w-7xl px-6 md:px-12 py-20 md:py-28">
           <SectionLabel>Deep Dive</SectionLabel>
-          <H2>P01 — Water Flow Fault</H2>
+          <H2>P01 - Water Flow Fault</H2>
           <div className="mt-8 space-y-6">
             <Lede>
               Triggered when the flow paddle or pressure switch detects circulation below the safe
@@ -652,7 +652,7 @@ function ManualPage() {
                 ["Inspect isolation valves", "Ensure every inline water valve between the pool and the external CHU is fully open."],
                 ["Bleed air from the filter", "If your system has a cartridge filter housing, press and hold the air-bleed button on top of the dome until water sprays out, then tighten."],
                 ["Purge air locks", "Power off and unplug the unit. Connect a garden hose directly to the pool's upper water nozzle. Seal around the hose with a wet cloth and open the tap on high. Pressurised water flushes trapped air pockets out through the lower nozzle."],
-                ["Clean or replace the filter", "Power off, remove the cartridge, and restart the unit briefly without the filter. If P01 clears, the cartridge is clogged — clean thoroughly or replace. Do not run the pool without a filter for extended periods."],
+                ["Clean or replace the filter", "Power off, remove the cartridge, and restart the unit briefly without the filter. If P01 clears, the cartridge is clogged - clean thoroughly or replace. Do not run the pool without a filter for extended periods."],
                 ["Perform a system reset", "Unplug the power cord from the wall outlet, wait 60 seconds for the control board capacitors to drain, then plug it back in."],
               ].map(([t, b], i) => (
                 <li key={t} className="grid grid-cols-[56px_1fr] gap-4">
@@ -718,7 +718,7 @@ function ManualPage() {
                 If the compressor runs continuously but the system can&rsquo;t hold setpoint, dust
                 on the condenser fins is likely insulating them. Turn off main power and unplug.
                 Remove the side access panels from the cabinet (or external CHU). Vacuum the metal
-                grates with a soft-brush attachment — even a thin layer of fine dust affects
+                grates with a soft-brush attachment - even a thin layer of fine dust affects
                 performance. Refit the panels with the vents directly in front of the machinery.
               </p>
             </div>
@@ -738,7 +738,7 @@ function ManualPage() {
               on demand.
             </h2>
             <p className="mt-8 font-editorial italic text-xl md:text-2xl leading-snug max-w-md text-obsidian/80">
-              Prefer to speak to someone? Our team is here weekdays across every channel — WhatsApp
+              Prefer to speak to someone? Our team is here weekdays across every channel - WhatsApp
               is the fastest.
             </p>
             <p className="mt-auto pt-10 text-xs uppercase tracking-[0.22em] text-obsidian/65 max-w-xs leading-relaxed">
@@ -746,7 +746,7 @@ function ManualPage() {
             </p>
           </div>
 
-          {/* Right column — 2x2 contact tiles */}
+          {/* Right column - 2x2 contact tiles */}
           <div className="grid grid-cols-1 sm:grid-cols-2 border border-obsidian/25 rounded-[2px]">
             {/* WhatsApp */}
             <a
@@ -810,7 +810,7 @@ function ManualPage() {
               </div>
             </a>
 
-            {/* Service request — dark tile */}
+            {/* Service request - dark tile */}
             <a
               href="mailto:service@c11recovery.com?subject=Service%20Request%20%E2%80%94%20Callback"
               className="group flex flex-col p-6 md:p-8 min-h-[240px] bg-obsidian text-stone-base hover:bg-obsidian/90 transition-colors"

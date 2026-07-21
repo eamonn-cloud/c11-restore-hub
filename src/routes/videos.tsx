@@ -4,13 +4,13 @@ import { useState } from "react";
 export const Route = createFileRoute("/videos")({
   head: () => ({
     meta: [
-      { title: "Installation & Maintenance Videos — C11 Recovery" },
+      { title: "Installation & Maintenance Videos - C11 Recovery" },
       {
         name: "description",
         content:
-          "Watch installation and maintenance videos for C11 Recovery ice baths — Kinos, Kinos Plus, Hanki and Kuura.",
+          "Watch installation and maintenance videos for C11 Recovery ice baths - Kinos, Kinos Plus, Hanki and Kuura.",
       },
-      { property: "og:title", content: "Installation & Maintenance Videos — C11 Recovery" },
+      { property: "og:title", content: "Installation & Maintenance Videos - C11 Recovery" },
       {
         property: "og:description",
         content:
@@ -144,7 +144,7 @@ function VideosPage() {
                   <span>{v.label}</span>
                 </div>
                 <h3 className="mt-4 font-display uppercase font-bold text-2xl md:text-3xl tracking-tight">
-                  {current.name} — {v.label}
+                  {current.name} - {v.label}
                 </h3>
 
                 <div className="mt-6 relative w-full aspect-video bg-obsidian rounded-[2px] overflow-hidden border border-obsidian">
