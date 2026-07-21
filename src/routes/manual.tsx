@@ -91,12 +91,12 @@ function ManualSearch() {
                     type="button"
                     onMouseDown={(e) => e.preventDefault()}
                     onClick={() => jump(r.id)}
-                    className="w-full text-left px-4 py-3 border-b border-obsidian/10 last:border-0 hover:bg-obsidian hover:text-stone-base transition-colors flex items-baseline gap-3"
+                    className="w-full text-left px-4 py-2.5 bg-stone-base border-b border-obsidian/10 last:border-0 hover:bg-obsidian hover:text-stone-base transition-colors flex items-baseline gap-4"
                   >
-                    <span className="text-xs uppercase tracking-[0.18em] font-medium tabular-nums opacity-60 w-14 shrink-0">
+                    <span className="text-[10px] uppercase tracking-[0.16em] font-medium tabular-nums opacity-60 w-28 shrink-0 truncate">
                       #{r.id}
                     </span>
-                    <span className="text-sm font-medium uppercase tracking-[0.14em]">
+                    <span className="text-xs md:text-sm font-medium uppercase tracking-[0.12em] truncate">
                       {r.title}
                     </span>
                   </button>
