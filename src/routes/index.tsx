@@ -952,12 +952,26 @@ function AftercarePage() {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs uppercase tracking-[0.2em] text-obsidian/70">
+          <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-start md:justify-between text-xs uppercase tracking-[0.2em] text-obsidian/70">
+            <div className="flex flex-wrap gap-x-6 gap-y-3">
+              <A href={LINKS.whatsapp} className="hover:text-deep-current transition-colors">WhatsApp</A>
+              <A href={LINKS.phone} className="hover:text-deep-current transition-colors">{CONTACT.phoneDisplay}</A>
+              <A href={LINKS.email} className="hover:text-deep-current transition-colors normal-case tracking-normal">{CONTACT.email}</A>
+            </div>
+            <div className="flex flex-wrap gap-x-6 gap-y-3">
+              <A href={LINKS.privacy} className="hover:text-deep-current transition-colors">Privacy</A>
+              <A href={LINKS.terms} className="hover:text-deep-current transition-colors">Terms</A>
+              <A href={LINKS.returns} className="hover:text-deep-current transition-colors">Returns</A>
+            </div>
+          </div>
+
+          <div className="mt-8 pt-6 border-t border-obsidian/30 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs uppercase tracking-[0.2em] text-obsidian/70">
             <span>©2026 C11® All Rights Reserved</span>
             <span className="font-editorial italic normal-case tracking-normal text-base text-obsidian">
               engineered to restore.
             </span>
           </div>
+
         </div>
       </section>
     </main>
