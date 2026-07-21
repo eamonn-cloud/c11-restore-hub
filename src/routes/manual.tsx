@@ -1,5 +1,115 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import type { ReactNode } from "react";
+import { useMemo, useState, type ReactNode } from "react";
+
+type SearchEntry = { id: string; title: string; keywords: string };
+
+const SEARCH_INDEX: SearchEntry[] = [
+  { id: "specs", title: "Comparative specifications", keywords: "dimensions weight length width height capacity litres temperature range cooling heating rate compressor kW power consumption refrigerant R32 R134a R290 noise dB filtration ozone UV" },
+  { id: "chemistry", title: "Fluid additions & chemistry", keywords: "chlorine bromine salts oils bath bomb epsom essential water treatment corrosion" },
+  { id: "ice", title: "Manual ice addition", keywords: "ice cubes sensor damage impeller pump" },
+  { id: "electrical", title: "Electrical & ground-fault", keywords: "rcd rcbo earth ground fault socket amp voltage 230v breaker" },
+  { id: "ventilation", title: "Ventilation & clearances", keywords: "airflow clearance space cabinet vent overheat" },
+  { id: "outdoor", title: "Outdoor use & enclosures", keywords: "ipx4 rain weather cover shed outdoor installation" },
+  { id: "sleep", title: "Sleep mode & freezing", keywords: "winter freeze frost antifreeze standby drain" },
+  { id: "controller", title: "Controller & calibration", keywords: "lock unlock keypad mode ozonator timer calibration display" },
+  { id: "errors", title: "Error code matrix", keywords: "error codes e01 e02 e03 e04 e05 e11 e12 e13 e14 p02 p03 p04 fault alarm troubleshoot" },
+  { id: "p01", title: "P01 flow fault workflow", keywords: "p01 flow fault airlock priming pump no water not pumping filter housing bleed" },
+  { id: "maintenance", title: "Maintenance procedures", keywords: "flush pipes condenser cleaning filter change service schedule" },
+];
+
+function ManualSearch() {
+  const [q, setQ] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const results = useMemo(() => {
+    const term = q.trim().toLowerCase();
+    if (!term) return [];
+    return SEARCH_INDEX.filter(
+      (e) =>
+        e.id.includes(term) ||
+        e.title.toLowerCase().includes(term) ||
+        e.keywords.toLowerCase().includes(term),
+    ).slice(0, 8);
+  }, [q]);
+
+  const jump = (id: string) => {
+    setQ("");
+    setOpen(false);
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.replaceState(null, "", `#${id}`);
+    }
+  };
+
+  return (
+    <div className="sticky top-0 z-40 bg-stone-base/95 backdrop-blur border-b border-obsidian/15">
+      <div className="mx-auto max-w-7xl px-6 md:px-12 py-3 relative">
+        <div className="flex items-center gap-3 border border-obsidian/30 rounded-[2px] px-4 py-3 focus-within:border-obsidian transition-colors">
+          <span aria-hidden className="text-obsidian/60 text-sm">✳</span>
+          <input
+            type="search"
+            value={q}
+            onChange={(e) => {
+              setQ(e.target.value);
+              setOpen(true);
+            }}
+            onFocus={() => setOpen(true)}
+            onBlur={() => setTimeout(() => setOpen(false), 150)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && results[0]) {
+                e.preventDefault();
+                jump(results[0].id);
+              }
+              if (e.key === "Escape") setOpen(false);
+            }}
+            placeholder="Search the manual - try 'p01', 'error codes', 'winter'..."
+            className="flex-1 bg-transparent outline-none text-sm md:text-[15px] placeholder:text-obsidian/40 placeholder:italic placeholder:font-editorial"
+            aria-label="Search the manual"
+          />
+          {q && (
+            <button
+              type="button"
+              onClick={() => setQ("")}
+              className="text-xs uppercase tracking-[0.16em] text-obsidian/60 hover:text-obsidian"
+            >
+              Clear
+            </button>
+          )}
+        </div>
+
+        {open && q.trim() && (
+          <ul className="absolute left-6 right-6 md:left-12 md:right-12 mt-1 bg-stone-base border border-obsidian rounded-[2px] max-h-80 overflow-auto">
+            {results.length === 0 ? (
+              <li className="px-4 py-3 text-sm text-obsidian/60 italic font-editorial">
+                No matches. Try a different term.
+              </li>
+            ) : (
+              results.map((r) => (
+                <li key={r.id}>
+                  <button
+                    type="button"
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={() => jump(r.id)}
+                    className="w-full text-left px-4 py-3 border-b border-obsidian/10 last:border-0 hover:bg-obsidian hover:text-stone-base transition-colors flex items-baseline gap-3"
+                  >
+                    <span className="text-xs uppercase tracking-[0.18em] font-medium tabular-nums opacity-60 w-14 shrink-0">
+                      #{r.id}
+                    </span>
+                    <span className="text-sm font-medium uppercase tracking-[0.14em]">
+                      {r.title}
+                    </span>
+                  </button>
+                </li>
+              ))
+            )}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+}
+
 
 export const Route = createFileRoute("/manual")({
   head: () => ({
