@@ -255,6 +255,8 @@ function ManualPage() {
         </div>
       </div>
 
+      <ManualSearch />
+
       {/* Hero */}
       <section className="bg-obsidian text-stone-base">
         <div className="mx-auto max-w-7xl px-6 md:px-12 py-20 md:py-32">
