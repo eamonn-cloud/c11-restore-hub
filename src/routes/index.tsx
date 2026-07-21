@@ -781,11 +781,91 @@ function AftercarePage() {
 
               <div className="mt-10 flex flex-wrap items-center gap-6">
                 <ArrowLink href={LINKS.manuals}>Read full article →</ArrowLink>
-                <span className="font-editorial italic text-obsidian/60">
-                  Still stuck? Reach out through the manuals section.
-                </span>
+                <ArrowLink href={LINKS.whatsapp}>Still stuck? WhatsApp us →</ArrowLink>
               </div>
             </article>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-stone-base border-b border-obsidian">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-20 md:py-28">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <div className="lg:col-span-4">
+              <SectionLabel>FAQ</SectionLabel>
+              <h2 className="mt-6 font-display uppercase font-bold leading-[0.95] tracking-tight text-4xl md:text-5xl">
+                Frequently
+                <br />
+                asked.
+              </h2>
+              <p className="mt-6 font-editorial italic text-lg text-obsidian/70 max-w-sm">
+                Warranty, water chemistry, installation, winterisation — the
+                answers most owners look for.
+              </p>
+              <div className="mt-8">
+                <ArrowLink href={LINKS.whatsapp}>Can't find it? Ask us →</ArrowLink>
+              </div>
+            </div>
+
+            <ul className="lg:col-span-8 border-t border-obsidian">
+              {FAQS.map((f, i) => (
+                <li key={f.q} className="border-b border-obsidian/80">
+                  <details className="group">
+                    <summary className="cursor-pointer list-none py-6 flex items-baseline gap-6">
+                      <span className="font-display text-xs tabular-nums text-obsidian/50 w-8 shrink-0">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="flex-1 font-display text-lg md:text-xl font-bold uppercase tracking-tight leading-tight">
+                        {f.q}
+                      </span>
+                      <span
+                        aria-hidden
+                        className="text-2xl leading-none text-obsidian/60 transition-transform group-open:rotate-45"
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <p className="pb-6 pl-14 pr-10 text-[0.95rem] leading-relaxed text-obsidian/80 max-w-3xl">
+                      {f.a}
+                    </p>
+                  </details>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* WARRANTY & REGISTRATION */}
+      <section className="bg-obsidian text-stone-base border-b border-stone-base/20">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-20 md:py-28">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+            <div className="lg:col-span-8">
+              <SectionLabel tone="stone">Warranty & Registration</SectionLabel>
+              <h2
+                className="mt-6 font-display font-bold uppercase leading-[0.9] tracking-[-0.01em]"
+                style={{ fontSize: "clamp(2.25rem, 5.5vw, 4.5rem)" }}
+              >
+                Register your
+                <br />
+                unit in minutes.
+              </h2>
+              <p className="mt-8 max-w-2xl text-base md:text-lg leading-relaxed text-stone-base/80">
+                Every C11 ice bath ships with a 2-year chiller warranty and a
+                5-year pool shell warranty. Register within 30 days of delivery
+                so we have your serial number on file — it makes any future
+                service request faster.
+              </p>
+            </div>
+            <div className="lg:col-span-4 lg:justify-self-end flex flex-col gap-3">
+              <SolidButton href={LINKS.register} variant="stone">
+                Register My Unit →
+              </SolidButton>
+              <ArrowLink href={LINKS.warranty} tone="stone">
+                Make a Warranty Claim →
+              </ArrowLink>
+            </div>
           </div>
         </div>
       </section>
