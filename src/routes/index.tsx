@@ -230,10 +230,10 @@ const RESOURCES: Resource[] = [
     n: "03",
     title: "Manuals & Engineering Reference",
     body: "Full product manuals plus the C11 engineering reference — specs, controller calibration, error code matrix, P01 flow-fault workflow and field maintenance procedures.",
-    cta: "Open Manuals →",
-    href: LINKS.manuals,
-    secondaryCta: "Engineering Reference →",
-    secondaryHref: "/manual",
+    links: [
+      { label: "Open Manuals →", href: LINKS.manuals },
+      { label: "Engineering Reference →", href: "/manual" },
+    ],
   },
 ];
 
