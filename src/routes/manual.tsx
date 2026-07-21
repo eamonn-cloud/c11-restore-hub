@@ -726,6 +726,114 @@ function ManualPage() {
         </div>
       </section>
 
+      {/* Talk to us */}
+      <section id="talk" className="border-b border-obsidian/15">
+        <div className="mx-auto max-w-7xl px-6 md:px-12 py-20 md:py-28 grid md:grid-cols-2 gap-12 md:gap-16">
+          {/* Left column */}
+          <div className="flex flex-col">
+            <SectionLabel>Talk to us</SectionLabel>
+            <h2 className="mt-8 font-display font-black uppercase tracking-tight leading-[0.9] text-4xl md:text-6xl">
+              Human support,
+              <br />
+              on demand.
+            </h2>
+            <p className="mt-8 font-editorial italic text-xl md:text-2xl leading-snug max-w-md text-obsidian/80">
+              Prefer to speak to someone? Our team is here weekdays across every channel — WhatsApp
+              is the fastest.
+            </p>
+            <p className="mt-auto pt-10 text-xs uppercase tracking-[0.22em] text-obsidian/65 max-w-xs leading-relaxed">
+              Mon–Fri · 9:00–17:30 GMT · Replies within 1 working day.
+            </p>
+          </div>
+
+          {/* Right column — 2x2 contact tiles */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 border border-obsidian/25 rounded-[2px]">
+            {/* WhatsApp */}
+            <a
+              href="https://wa.me/353851426203"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col p-6 md:p-8 min-h-[240px] border-b sm:border-r border-obsidian/25 hover:bg-obsidian/[0.04] transition-colors"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs uppercase tracking-[0.22em] font-medium">WhatsApp</span>
+                <span className="text-xs uppercase tracking-[0.22em] font-medium text-deep-current flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-deep-current" />
+                  Live
+                </span>
+              </div>
+              <H3>
+                <span className="block mt-8">Chat now</span>
+              </H3>
+              <div className="mt-3 font-editorial italic text-lg text-obsidian/80">
+                +353 85 142 6203
+              </div>
+              <div className="mt-auto pt-8 flex items-center justify-between text-xs uppercase tracking-[0.22em] font-medium border-b border-obsidian pb-2">
+                <span>Open WhatsApp</span>
+                <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+              </div>
+            </a>
+
+            {/* Phone */}
+            <a
+              href="tel:+353851426203"
+              className="group flex flex-col p-6 md:p-8 min-h-[240px] border-b border-obsidian/25 hover:bg-obsidian/[0.04] transition-colors"
+            >
+              <span className="text-xs uppercase tracking-[0.22em] font-medium">Phone</span>
+              <H3>
+                <span className="block mt-8">Call the team</span>
+              </H3>
+              <div className="mt-3 font-editorial italic text-lg text-obsidian/80">
+                +353 85 142 6203
+              </div>
+              <div className="mt-auto pt-8 flex items-center justify-between text-xs uppercase tracking-[0.22em] font-medium border-b border-obsidian pb-2">
+                <span>Dial now</span>
+                <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+              </div>
+            </a>
+
+            {/* Email */}
+            <a
+              href="mailto:support@c11recovery.com"
+              className="group flex flex-col p-6 md:p-8 min-h-[240px] sm:border-r border-obsidian/25 hover:bg-obsidian/[0.04] transition-colors"
+            >
+              <span className="text-xs uppercase tracking-[0.22em] font-medium">Email</span>
+              <H3>
+                <span className="block mt-8">Send a note</span>
+              </H3>
+              <div className="mt-3 font-editorial italic text-lg text-obsidian/80 break-all">
+                support@c11recovery.com
+              </div>
+              <div className="mt-auto pt-8 flex items-center justify-between text-xs uppercase tracking-[0.22em] font-medium border-b border-obsidian pb-2">
+                <span>Write to support</span>
+                <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+              </div>
+            </a>
+
+            {/* Service request — dark tile */}
+            <a
+              href="mailto:support@c11recovery.com?subject=Service%20Request%20%E2%80%94%20Callback"
+              className="group flex flex-col p-6 md:p-8 min-h-[240px] bg-obsidian text-stone-base hover:bg-obsidian/90 transition-colors"
+            >
+              <span className="text-xs uppercase tracking-[0.22em] font-medium text-stone-base/80">
+                Service Request
+              </span>
+              <h3 className="mt-8 font-display font-bold uppercase tracking-tight text-xl md:text-2xl leading-tight">
+                Book a callback
+              </h3>
+              <div className="mt-3 font-editorial italic text-lg text-stone-base/80">
+                Warranty, install &amp; repairs
+              </div>
+              <div className="mt-auto pt-8 flex items-center justify-between text-xs uppercase tracking-[0.22em] font-medium border-b border-stone-base pb-2">
+                <span>Raise a ticket</span>
+                <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+
       {/* Footer strip */}
       <section className="bg-stone-base">
         <div className="mx-auto max-w-7xl px-6 md:px-12 py-14 flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-t border-obsidian/25">
