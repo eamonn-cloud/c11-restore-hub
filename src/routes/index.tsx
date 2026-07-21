@@ -228,10 +228,12 @@ const RESOURCES: Resource[] = [
   },
   {
     n: "03",
-    title: "Manuals",
-    body: "Full product manuals covering safety, technical specifications, installation, electrical and water connections, commissioning, controller operation, filter and UV lamp maintenance, error codes, and troubleshooting.",
+    title: "Manuals & Engineering Reference",
+    body: "Full product manuals plus the C11 engineering reference — specs, controller calibration, error code matrix, P01 flow-fault workflow and field maintenance procedures.",
     cta: "Open Manuals →",
     href: LINKS.manuals,
+    secondaryCta: "Engineering Reference →",
+    secondaryHref: "/manual",
   },
 ];
 
