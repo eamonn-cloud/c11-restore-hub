@@ -257,53 +257,6 @@ const MANUAL_TOPICS = [
 
 ];
 
-const SUPPORT_CATEGORIES = [
-  {
-    name: "Ice Baths",
-    count: 5,
-    active: true,
-    articles: [
-      { title: "Chiller is not pumping water after filter change / initial setup", active: true, href: LINKS.manuals },
-      { title: "Error codes: E11, E12 & E13", href: LINKS.manuals },
-      { title: "I have switched on my chiller but the screen is blank", href: LINKS.manuals },
-      { title: "Setup & installation (Ice Baths)", href: LINKS.manuals },
-      { title: "Filter change & UV lamp replacement", href: LINKS.manuals },
-    ],
-  },
-  {
-    name: "Setup & Installation",
-    count: 4,
-    articles: [
-      { title: "Electrical & plumbing requirements", href: LINKS.manuals },
-      { title: "First fill, priming & commissioning", href: LINKS.manuals },
-      { title: "Pairing the Wi-Fi controller", href: LINKS.chuManual },
-      { title: "Positioning, drainage & clearances", href: LINKS.manuals },
-    ],
-  },
-  {
-    name: "Maintenance",
-    count: 6,
-    articles: [
-      { title: "Weekly & monthly maintenance schedule", href: LINKS.manuals },
-      { title: "Water chemistry: ozone, pH & sanitiser", href: LINKS.manuals },
-      { title: "Replacing filter cartridges", href: LINKS.filters },
-      { title: "UV lamp lifespan & replacement", href: LINKS.manuals },
-      { title: "Cleaning the shell & fittings", href: LINKS.manuals },
-      { title: "Winterisation & holiday mode", href: LINKS.manuals },
-    ],
-  },
-  {
-    name: "Troubleshooting",
-    count: 5,
-    articles: [
-      { title: "Unit won't power on", href: LINKS.manuals },
-      { title: "Water not reaching set temperature", href: LINKS.manuals },
-      { title: "Cloudy or discoloured water", href: LINKS.manuals },
-      { title: "Noisy pump or vibration", href: LINKS.manuals },
-      { title: "Leaks around hose fittings", href: LINKS.manuals },
-    ],
-  },
-];
 
 const FAQS: { q: string; a: string }[] = [
   {
