@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VideosRouteImport } from './routes/videos'
 import { Route as SupportRequestRouteImport } from './routes/support-request'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ManualRouteImport } from './routes/manual'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
@@ -26,6 +27,11 @@ const VideosRoute = VideosRouteImport.update({
 const SupportRequestRoute = SupportRequestRouteImport.update({
   id: '/support-request',
   path: '/support-request',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ManualRoute = ManualRouteImport.update({
@@ -65,6 +71,7 @@ const LovableEmailTransactionalPreviewRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/manual': typeof ManualRoute
+  '/register': typeof RegisterRoute
   '/support-request': typeof SupportRequestRoute
   '/videos': typeof VideosRoute
   '/api/chat': typeof ApiChatRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/manual': typeof ManualRoute
+  '/register': typeof RegisterRoute
   '/support-request': typeof SupportRequestRoute
   '/videos': typeof VideosRoute
   '/api/chat': typeof ApiChatRoute
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/manual': typeof ManualRoute
+  '/register': typeof RegisterRoute
   '/support-request': typeof SupportRequestRoute
   '/videos': typeof VideosRoute
   '/api/chat': typeof ApiChatRoute
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/manual'
+    | '/register'
     | '/support-request'
     | '/videos'
     | '/api/chat'
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/manual'
+    | '/register'
     | '/support-request'
     | '/videos'
     | '/api/chat'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/manual'
+    | '/register'
     | '/support-request'
     | '/videos'
     | '/api/chat'
@@ -129,6 +141,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ManualRoute: typeof ManualRoute
+  RegisterRoute: typeof RegisterRoute
   SupportRequestRoute: typeof SupportRequestRoute
   VideosRoute: typeof VideosRoute
   ApiChatRoute: typeof ApiChatRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       path: '/support-request'
       fullPath: '/support-request'
       preLoaderRoute: typeof SupportRequestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/manual': {
@@ -201,6 +221,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ManualRoute: ManualRoute,
+  RegisterRoute: RegisterRoute,
   SupportRequestRoute: SupportRequestRoute,
   VideosRoute: VideosRoute,
   ApiChatRoute: ApiChatRoute,

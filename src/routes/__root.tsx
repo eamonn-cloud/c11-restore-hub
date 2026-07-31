@@ -150,6 +150,7 @@ const SECTION_TABS = [
   { label: "Aftercare", to: "/", exact: true },
   { label: "Videos", to: "/videos", exact: false },
   { label: "Manual", to: "/manual", exact: false },
+  { label: "Register", to: "/register", exact: false },
   { label: "Support form", to: "/support-request", exact: false },
 ] as const;
 
