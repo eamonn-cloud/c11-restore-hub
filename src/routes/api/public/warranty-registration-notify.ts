@@ -1,4 +1,5 @@
-import { createFileRoute } from '@tanstack/router'
+import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
 import { sendTemplateEmail } from '@/lib/email-templates/send-email'
 
