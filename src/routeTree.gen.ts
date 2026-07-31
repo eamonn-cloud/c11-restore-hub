@@ -14,6 +14,7 @@ import { Route as SupportRequestRouteImport } from './routes/support-request'
 import { Route as ManualRouteImport } from './routes/manual'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as ApiPublicSupportRequestNotifyRouteImport } from './routes/api/public/support-request-notify'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const VideosRoute = VideosRouteImport.update({
@@ -41,6 +42,12 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicSupportRequestNotifyRoute =
+  ApiPublicSupportRequestNotifyRouteImport.update({
+    id: '/api/public/support-request-notify',
+    path: '/api/public/support-request-notify',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LovableEmailTransactionalPreviewRoute =
   LovableEmailTransactionalPreviewRouteImport.update({
     id: '/lovable/email/transactional/preview',
@@ -54,6 +61,7 @@ export interface FileRoutesByFullPath {
   '/support-request': typeof SupportRequestRoute
   '/videos': typeof VideosRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/public/support-request-notify': typeof ApiPublicSupportRequestNotifyRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
@@ -62,6 +70,7 @@ export interface FileRoutesByTo {
   '/support-request': typeof SupportRequestRoute
   '/videos': typeof VideosRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/public/support-request-notify': typeof ApiPublicSupportRequestNotifyRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
@@ -71,6 +80,7 @@ export interface FileRoutesById {
   '/support-request': typeof SupportRequestRoute
   '/videos': typeof VideosRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/public/support-request-notify': typeof ApiPublicSupportRequestNotifyRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
@@ -81,6 +91,7 @@ export interface FileRouteTypes {
     | '/support-request'
     | '/videos'
     | '/api/chat'
+    | '/api/public/support-request-notify'
     | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -89,6 +100,7 @@ export interface FileRouteTypes {
     | '/support-request'
     | '/videos'
     | '/api/chat'
+    | '/api/public/support-request-notify'
     | '/lovable/email/transactional/preview'
   id:
     | '__root__'
@@ -97,6 +109,7 @@ export interface FileRouteTypes {
     | '/support-request'
     | '/videos'
     | '/api/chat'
+    | '/api/public/support-request-notify'
     | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
@@ -106,6 +119,7 @@ export interface RootRouteChildren {
   SupportRequestRoute: typeof SupportRequestRoute
   VideosRoute: typeof VideosRoute
   ApiChatRoute: typeof ApiChatRoute
+  ApiPublicSupportRequestNotifyRoute: typeof ApiPublicSupportRequestNotifyRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
@@ -146,6 +160,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/support-request-notify': {
+      id: '/api/public/support-request-notify'
+      path: '/api/public/support-request-notify'
+      fullPath: '/api/public/support-request-notify'
+      preLoaderRoute: typeof ApiPublicSupportRequestNotifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/transactional/preview': {
       id: '/lovable/email/transactional/preview'
       path: '/lovable/email/transactional/preview'
@@ -162,6 +183,7 @@ const rootRouteChildren: RootRouteChildren = {
   SupportRequestRoute: SupportRequestRoute,
   VideosRoute: VideosRoute,
   ApiChatRoute: ApiChatRoute,
+  ApiPublicSupportRequestNotifyRoute: ApiPublicSupportRequestNotifyRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport

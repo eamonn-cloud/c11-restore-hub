@@ -257,29 +257,45 @@ function SupportRequestPage() {
         uploaded.push({ name: file.name, size: file.size, path });
       }
 
-      const { error: insertError } = await supabase.from("support_requests").insert({
-        name: f.name.trim(),
-        company: f.company.trim() || null,
-        email: f.email.trim(),
-        phone: f.phone.trim(),
-        address: f.address.trim() || null,
-        model: f.model,
-        serial: f.serial.trim(),
-        purchased: f.purchased.trim() || null,
-        installed_by: f.installedBy.trim() || null,
-        issue_area: f.area || null,
-        error_code: f.errorCode.trim() || null,
-        frequency: f.frequency || null,
-        started: f.started.trim() || null,
-        water_temp: f.waterTemp.trim() || null,
-        description: f.description.trim(),
-        checks,
-        files: uploaded,
-        access: f.access || null,
-        availability: f.availability.trim() || null,
-        summary,
-      });
+      const { data: inserted, error: insertError } = await supabase
+        .from("support_requests")
+        .insert({
+          name: f.name.trim(),
+          company: f.company.trim() || null,
+          email: f.email.trim(),
+          phone: f.phone.trim(),
+          address: f.address.trim() || null,
+          model: f.model,
+          serial: f.serial.trim(),
+          purchased: f.purchased.trim() || null,
+          installed_by: f.installedBy.trim() || null,
+          issue_area: f.area || null,
+          error_code: f.errorCode.trim() || null,
+          frequency: f.frequency || null,
+          started: f.started.trim() || null,
+          water_temp: f.waterTemp.trim() || null,
+          description: f.description.trim(),
+          checks,
+          files: uploaded,
+          access: f.access || null,
+          availability: f.availability.trim() || null,
+          summary,
+        })
+        .select("id")
+        .single();
       if (insertError) throw insertError;
+
+      // Notify the service team by email (non-blocking for the customer).
+      try {
+        await fetch("/api/public/support-request-notify", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ id: inserted.id }),
+        });
+      } catch (notifyErr) {
+        console.error("Support request notification failed", notifyErr);
+      }
+
 
       setSubmitted(true);
       window.setTimeout(
