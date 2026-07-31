@@ -147,6 +147,8 @@ function SupportRequestPage() {
   const [checks, setChecks] = useState<string[]>([]);
   const [files, setFiles] = useState<Files>([]);
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, boolean>>({});
   const [copied, setCopied] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
