@@ -1,99 +1,50 @@
+## Ask C11 — AI support assistant
 
-## Customer Aftercare Page — C11 Recovery
+A floating chat bubble on every page, answering customer questions from the site content and the uploaded PDF manuals. No login, no database, no saved history — a fresh conversation each visit.
 
-Replace the placeholder home at `/` with a full editorial Aftercare page matching the C11 brand system.
+### 1. Knowledge base
 
-### Design tokens (src/styles.css)
-Add brand colors as semantic tokens:
-- `--stone-base: #F3EDE5`
-- `--obsidian: #121212`
-- `--thermal-rose: #F5BAD3`
-- `--deep-current: #204296`
-- `--soft-mineral: #C9C9C9`
+Build a single server-side knowledge file, `src/lib/c11-knowledge.ts`, exporting one plain-text corpus. Content compiled from:
 
-Map to Tailwind via `@theme inline` so `bg-stone-base`, `text-obsidian`, `bg-thermal-rose`, `text-deep-current`, `border-soft-mineral` all work.
+- **Existing site content** — engineering reference (`/manual`): comparative specs for Kinos, Kinos Plus, Hanki, Kuura; operational rules (no salts/oils, no manual ice); safety and clearances; winter/outdoor use; controller guide; full E-code / P-code error matrix; P01 flow-fault procedures; maintenance. Plus the homepage FAQ, model resource links, filter link, and contact details.
+- **Uploaded PDFs** — I extract the text from the seven uploaded documents (CHU manual, CHU Wi-Fi manual, Kinos manual, Kinos Plus manual, Kuura manual, Kinos + Kinos Plus one-pagers, Kinos Problems & Solutions) and fold the useful support content into the same corpus at build time. The PDFs are baked into the text file, so there is no vector database, no embeddings, and no runtime PDF fetching.
 
-Set global background to Stone Base, text to Obsidian, sharp corners (2–4px max), no drop shadows.
+Because the corpus fits comfortably in a modern model's context, the whole thing is sent as system context on every request. That is simpler and more accurate than retrieval for a knowledge base this size.
 
-### Typography
-Load via `<link>` in `__root.tsx` head (never `@import` URL in styles.css):
-- **Headlines**: Inter (700–900) as fallback for PP Neue Montreal, with font stack `"PP Neue Montreal", "Helvetica Neue", Inter, sans-serif`
-- **Editorial**: EB Garamond (Google Fonts) for sublines
-- **Body**: Inter (400–500)
+### 2. Server route
 
-Register three `--font-*` tokens: `--font-display`, `--font-editorial`, `--font-body`.
+`src/routes/api/chat.ts` — a TanStack server route streaming from Lovable AI (`openai/gpt-5.6-sol`) via the AI SDK. The system prompt:
 
-### Route
-Rewrite `src/routes/index.tsx` (placeholder replacement rule — the Aftercare page IS the index). Update `head()` with title "Aftercare & Support — C11 Recovery" and matching description/OG tags.
+- Injects the full knowledge corpus.
+- Sets the C11 voice: confident, minimal, performance-led; no em dashes.
+- Instructs it to answer only from the corpus, cite the model name when specs differ, and link to `/manual#p01`-style anchors, `/videos`, or the relevant PDF when useful.
+- Falls back to: "I don't have that in the documentation - contact service@c11recovery.com or WhatsApp +353 85 142 6203" rather than guessing.
+- Refuses unsafe advice (electrical work, opening the chiller) and routes those to support.
 
-### Central link config
-Top of the route file, one object for easy later swap:
-```
-const LINKS = {
-  videos: "#",
-  productCards: "#",
-  manuals: "#",
-  filters: "#",
-  review: "#",
-  instagram: "#",
-  linkedin: "#",
-  tiktok: "#",
-};
-```
-A small `<AftercareLink href>` component renders `<a>` with hover underline + color shift to Deep Current, and applies `target="_blank" rel="noopener"` automatically when href starts with `http`.
+`LOVABLE_API_KEY` stays server-side. 429 / 402 gateway errors surface as a readable message in the chat.
 
-### Page sections
+### 3. Chat UI
 
-**1. Hero** — Obsidian bg, Stone Base text, full-viewport min-height, generous padding.
-- Top-left small label: `✳ Customer Aftercare` (tracked uppercase, small)
-- H1: `AFTERCARE & SUPPORT` — bold display font, huge (clamp 3rem → 7rem), tight leading, uppercase
-- EB Garamond subline: "Everything you need to set up, maintain, and get the most from your C11 recovery equipment." — italic-ish editorial feel, max-width constrained
-- 1px Obsidian/Stone rule at bottom of section
+Install AI Elements (`conversation`, `message`, `prompt-input`, `shimmer`) and compose:
 
-**2. Resource cards** — Stone Base bg. Section label `✳ Resources` top.
-- 3-column grid on desktop, stack on mobile
-- Each card: 1px Obsidian border, sharp 2px radius, generous padding
-  - Large number `01` / `02` / `03` in display font
-  - Title in display sans
-  - Description in body sans
-  - Button-style link "Watch Videos →" etc. with hover underline / Deep Current
-- Content per spec (Installation Videos, Product Cards, Manuals & Warranty)
+- `src/components/AskC11.tsx` — floating launcher in the bottom-right corner: Obsidian circle with the ✳ mark, 2px radius, no shadow, "Ask C11" label on desktop.
+- Opens a panel (bottom-right card on desktop, full-screen sheet on mobile) in the brand system: Stone Base surface, 1px Obsidian border, Obsidian header bar with Stone Base text, EB Garamond intro line.
+- Empty state: "✳ Ask about setup, error codes, chemistry or maintenance." plus four suggestion chips — "What does P01 mean?", "How do I change the filter?", "What chemicals can I use?", "Kinos vs Kinos Plus specs".
+- Assistant messages render as plain markdown on the surface (no bubble); user messages get an Obsidian bubble with Stone Base text.
+- "Thinking..." shimmer while streaming; composer stays focused.
+- Small footer line: "AI assistant - for warranty or repairs contact service@c11recovery.com".
 
-**3. What the manuals cover** — Stone Base bg. Section label `✳ Inside the manuals`.
-- Heading + intro line
-- Two-column list of 17 items separated by thin 1px Obsidian rules between rows
-- Responsive: single column on mobile
+Mounted once in `src/routes/__root.tsx` so it appears on Aftercare, Videos and Manual.
 
-**4. Replacement Filters banner** — Thermal Rose bg, Obsidian text.
-- Headline `KEEP YOUR WATER PRISTINE` display bold uppercase
-- Body copy
-- Button: Obsidian bg / Stone Base text, sharp 2px radius, "Order Replacement Filters →"
+### 4. Non-goals
 
-**5. Reviews** — Obsidian bg, Stone Base text.
-- Section label `✳ Reviews`
-- EB Garamond line "Thank you for your purchase — we hope you love your new ice bath."
-- Body invite paragraph
-- Button: Stone Base bg / Obsidian text, "Leave a Google Review →"
-
-**6. Socials footer strip** — Stone Base bg.
-- `✳ Follow C11` label
-- Three link buttons: Instagram · LinkedIn · TikTok (1px Obsidian border, hover fills Obsidian / text Stone Base)
-- Bottom rule
-- Footer line: "©2026 C11® All Rights Reserved · engineered to restore." — small, tracked
-
-### Responsive
-- Mobile first; grids collapse to single column
-- Fluid type via `clamp()` on hero
-- Section padding scales down on mobile
-
-### Non-goals
-- No stock imagery
-- No drop shadows
-- No radius > 4px
-- No real URLs yet — all links use `LINKS` map
+- No conversation storage, accounts, or Lovable Cloud.
+- No embeddings/vector search.
+- No changes to existing page content or links.
 
 ### Technical notes
-- Single file: `src/routes/index.tsx` for the page + inline components (Section, Card, PrimaryButton, GhostButton, AftercareLink)
-- Fonts loaded in `src/routes/__root.tsx` head `links`
-- Tokens in `src/styles.css` under `@theme inline` + `:root`
-- Default body bg/text set to Stone Base / Obsidian in styles.css so section-level bg overrides work cleanly
+
+- `bun add ai @ai-sdk/react @ai-sdk/openai-compatible`
+- Gateway provider helper in `src/lib/ai-gateway.server.ts` per the Lovable AI Gateway pattern; `reasoningEffort: "none"` set for GPT-5.6.
+- Rendering via `message.parts`, streamed with `toUIMessageStreamResponse`.
+- Knowledge corpus is a static string, so it ships with the Worker bundle - no runtime fetches.
