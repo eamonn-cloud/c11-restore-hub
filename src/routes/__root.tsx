@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import c11Logo from "../assets/c11-logo.png.asset.json";
+import { AskC11 } from "../components/AskC11";
 
 
 function NotFoundComponent() {
