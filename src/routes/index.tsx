@@ -656,13 +656,13 @@ function AftercarePage() {
                 className="font-editorial italic leading-[1.05] tracking-tight"
                 style={{ fontSize: "clamp(1.75rem, 4.5vw, 3.75rem)" }}
               >
-                Thank you for your purchase - we hope you love your new ice
-                bath.
+                Engineered to restore -
+                <br />trusted by owners.
               </p>
               <p className="mt-8 max-w-2xl text-base md:text-lg leading-relaxed text-stone-base/80">
-                If C11 has become part of your recovery, we'd love to hear about
-                it. Reading - and leaving - reviews helps other athletes,
-                clinicians, and performance-focused owners discover the brand.
+                Real feedback from C11 owners. If the brand has become part of your
+                routine, we'd love to hear about it - every review helps the next
+                owner decide.
               </p>
             </div>
             <div className="lg:col-span-4 lg:justify-self-end">
@@ -670,6 +670,35 @@ function AftercarePage() {
                 Leave a Google Review →
               </SolidButton>
             </div>
+          </div>
+
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-px bg-stone-base/20 border border-stone-base/20 rounded-[2px] overflow-hidden">
+            {REVIEWS.map((r) => (
+              <article key={r.name} className="bg-obsidian p-8 md:p-10 flex flex-col">
+                <div className="flex items-center gap-1" aria-label={`${r.stars} out of 5 stars`}>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <span
+                      key={i}
+                      aria-hidden
+                      className={i < r.stars ? "text-thermal-rose" : "text-stone-base/20"}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-6 text-base md:text-lg leading-relaxed text-stone-base/90 flex-1">
+                  "{r.body}"
+                </p>
+                <div className="mt-8 pt-6 border-t border-stone-base/20">
+                  <div className="font-display text-sm font-bold uppercase tracking-tight">
+                    {r.name}
+                  </div>
+                  <div className="mt-1 font-editorial italic text-sm text-stone-base/60">
+                    {r.role}
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
