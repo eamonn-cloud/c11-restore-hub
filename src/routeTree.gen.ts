@@ -14,6 +14,7 @@ import { Route as SupportRequestRouteImport } from './routes/support-request'
 import { Route as ManualRouteImport } from './routes/manual'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const VideosRoute = VideosRouteImport.update({
   id: '/videos',
@@ -40,6 +41,12 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +54,7 @@ export interface FileRoutesByFullPath {
   '/support-request': typeof SupportRequestRoute
   '/videos': typeof VideosRoute
   '/api/chat': typeof ApiChatRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +62,7 @@ export interface FileRoutesByTo {
   '/support-request': typeof SupportRequestRoute
   '/videos': typeof VideosRoute
   '/api/chat': typeof ApiChatRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,12 +71,25 @@ export interface FileRoutesById {
   '/support-request': typeof SupportRequestRoute
   '/videos': typeof VideosRoute
   '/api/chat': typeof ApiChatRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/manual' | '/support-request' | '/videos' | '/api/chat'
+  fullPaths:
+    | '/'
+    | '/manual'
+    | '/support-request'
+    | '/videos'
+    | '/api/chat'
+    | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/manual' | '/support-request' | '/videos' | '/api/chat'
+  to:
+    | '/'
+    | '/manual'
+    | '/support-request'
+    | '/videos'
+    | '/api/chat'
+    | '/lovable/email/transactional/preview'
   id:
     | '__root__'
     | '/'
@@ -75,6 +97,7 @@ export interface FileRouteTypes {
     | '/support-request'
     | '/videos'
     | '/api/chat'
+    | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -83,6 +106,7 @@ export interface RootRouteChildren {
   SupportRequestRoute: typeof SupportRequestRoute
   VideosRoute: typeof VideosRoute
   ApiChatRoute: typeof ApiChatRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -122,6 +146,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -131,7 +162,18 @@ const rootRouteChildren: RootRouteChildren = {
   SupportRequestRoute: SupportRequestRoute,
   VideosRoute: VideosRoute,
   ApiChatRoute: ApiChatRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
