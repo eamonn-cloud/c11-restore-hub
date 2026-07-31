@@ -92,6 +92,54 @@ export type Database = {
         }
         Relationships: []
       }
+      warranty_registrations: {
+        Row: {
+          address: string | null
+          created_at: string
+          email: string
+          id: string
+          install_date: string | null
+          installed_by: string | null
+          model: string
+          name: string
+          notes: string | null
+          phone: string
+          purchase_date: string | null
+          retailer: string | null
+          serial: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          install_date?: string | null
+          installed_by?: string | null
+          model: string
+          name: string
+          notes?: string | null
+          phone: string
+          purchase_date?: string | null
+          retailer?: string | null
+          serial: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          install_date?: string | null
+          installed_by?: string | null
+          model?: string
+          name?: string
+          notes?: string | null
+          phone?: string
+          purchase_date?: string | null
+          retailer?: string | null
+          serial?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

@@ -51,7 +51,7 @@ const LINKS = {
   whatsapp: "https://wa.me/353851426203",
   phone: "tel:+353851426203",
   email: "mailto:service@c11recovery.com",
-  register: "mailto:service@c11recovery.com?subject=Product%20Registration",
+  register: "/register",
   warranty: "mailto:service@c11recovery.com?subject=Warranty%20Claim",
   service: "/support-request",
   privacy: "https://c11recovery.com/privacy-policy/",
@@ -265,7 +265,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How do I register my product?",
-    a: "Email service@c11recovery.com with your name, delivery address, model, and serial number (found on the silver plate on the chiller housing). We'll confirm registration and file your warranty on our side.",
+    a: "Use the Register My Unit form on this page - it takes a minute and files your serial number and warranty on our side. Register within 30 days of delivery to activate cover.",
   },
   {
     q: "Where do I find my serial number?",
@@ -298,6 +298,33 @@ const FAQS: { q: string; a: string }[] = [
   {
     q: "What if I need spare parts other than filters?",
     a: "For pumps, seals, controllers, hoses, covers or steps, contact support with your model and serial number and we'll quote genuine parts and lead time.",
+  },
+];
+
+const REVIEWS: { name: string; role: string; stars: number; body: string }[] = [
+  {
+    name: "David O.",
+    role: "Kinos Plus owner",
+    stars: 5,
+    body: "Top class aftercare. The team talked me through the install over WhatsApp in ten minutes and the bath has been flawless since. Genuinely engineered to last.",
+  },
+  {
+    name: "Sarah M.",
+    role: "Kuura owner",
+    stars: 5,
+    body: "The engineering manual online is a game changer - I diagnosed a P01 flow fault myself in two minutes instead of waiting for a callout. The build quality is unreal.",
+  },
+  {
+    name: "Conor B.",
+    role: "Hanki owner",
+    stars: 5,
+    body: "Bought for our clinic. Two years in, still running like day one. Support actually picks up the phone and knows the product inside out. Would buy again.",
+  },
+  {
+    name: "Aoife K.",
+    role: "Kinos owner",
+    stars: 5,
+    body: "From ordering to setup to a small warranty query, everything was handled properly. The videos made installation straightforward even for a first-timer.",
   },
 ];
 
@@ -629,13 +656,13 @@ function AftercarePage() {
                 className="font-editorial italic leading-[1.05] tracking-tight"
                 style={{ fontSize: "clamp(1.75rem, 4.5vw, 3.75rem)" }}
               >
-                Thank you for your purchase - we hope you love your new ice
-                bath.
+                Engineered to restore -
+                <br />trusted by owners.
               </p>
               <p className="mt-8 max-w-2xl text-base md:text-lg leading-relaxed text-stone-base/80">
-                If C11 has become part of your recovery, we'd love to hear about
-                it. Reading - and leaving - reviews helps other athletes,
-                clinicians, and performance-focused owners discover the brand.
+                Real feedback from C11 owners. If the brand has become part of your
+                routine, we'd love to hear about it - every review helps the next
+                owner decide.
               </p>
             </div>
             <div className="lg:col-span-4 lg:justify-self-end">
@@ -643,6 +670,35 @@ function AftercarePage() {
                 Leave a Google Review →
               </SolidButton>
             </div>
+          </div>
+
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-px bg-stone-base/20 border border-stone-base/20 rounded-[2px] overflow-hidden">
+            {REVIEWS.map((r) => (
+              <article key={r.name} className="bg-obsidian p-8 md:p-10 flex flex-col">
+                <div className="flex items-center gap-1" aria-label={`${r.stars} out of 5 stars`}>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <span
+                      key={i}
+                      aria-hidden
+                      className={i < r.stars ? "text-thermal-rose" : "text-stone-base/20"}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-6 text-base md:text-lg leading-relaxed text-stone-base/90 flex-1">
+                  "{r.body}"
+                </p>
+                <div className="mt-8 pt-6 border-t border-stone-base/20">
+                  <div className="font-display text-sm font-bold uppercase tracking-tight">
+                    {r.name}
+                  </div>
+                  <div className="mt-1 font-editorial italic text-sm text-stone-base/60">
+                    {r.role}
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>

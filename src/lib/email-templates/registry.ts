@@ -18,8 +18,10 @@ export interface TemplateEntry {
  *   // then add to TEMPLATES: 'welcome': welcomeTemplate
  */
 import { template as supportRequestTemplate } from './support-request'
+import { template as warrantyRegistrationTemplate } from './warranty-registration'
 
 export const TEMPLATES: Record<string, TemplateEntry> = {
   'support-request': supportRequestTemplate,
+  'warranty-registration': warrantyRegistrationTemplate,
 }
 

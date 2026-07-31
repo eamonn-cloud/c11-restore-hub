@@ -11,9 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VideosRouteImport } from './routes/videos'
 import { Route as SupportRequestRouteImport } from './routes/support-request'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ManualRouteImport } from './routes/manual'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as ApiPublicWarrantyRegistrationNotifyRouteImport } from './routes/api/public/warranty-registration-notify'
 import { Route as ApiPublicSupportRequestNotifyRouteImport } from './routes/api/public/support-request-notify'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
@@ -25,6 +27,11 @@ const VideosRoute = VideosRouteImport.update({
 const SupportRequestRoute = SupportRequestRouteImport.update({
   id: '/support-request',
   path: '/support-request',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ManualRoute = ManualRouteImport.update({
@@ -42,6 +49,12 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicWarrantyRegistrationNotifyRoute =
+  ApiPublicWarrantyRegistrationNotifyRouteImport.update({
+    id: '/api/public/warranty-registration-notify',
+    path: '/api/public/warranty-registration-notify',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicSupportRequestNotifyRoute =
   ApiPublicSupportRequestNotifyRouteImport.update({
     id: '/api/public/support-request-notify',
@@ -58,29 +71,35 @@ const LovableEmailTransactionalPreviewRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/manual': typeof ManualRoute
+  '/register': typeof RegisterRoute
   '/support-request': typeof SupportRequestRoute
   '/videos': typeof VideosRoute
   '/api/chat': typeof ApiChatRoute
   '/api/public/support-request-notify': typeof ApiPublicSupportRequestNotifyRoute
+  '/api/public/warranty-registration-notify': typeof ApiPublicWarrantyRegistrationNotifyRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/manual': typeof ManualRoute
+  '/register': typeof RegisterRoute
   '/support-request': typeof SupportRequestRoute
   '/videos': typeof VideosRoute
   '/api/chat': typeof ApiChatRoute
   '/api/public/support-request-notify': typeof ApiPublicSupportRequestNotifyRoute
+  '/api/public/warranty-registration-notify': typeof ApiPublicWarrantyRegistrationNotifyRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/manual': typeof ManualRoute
+  '/register': typeof RegisterRoute
   '/support-request': typeof SupportRequestRoute
   '/videos': typeof VideosRoute
   '/api/chat': typeof ApiChatRoute
   '/api/public/support-request-notify': typeof ApiPublicSupportRequestNotifyRoute
+  '/api/public/warranty-registration-notify': typeof ApiPublicWarrantyRegistrationNotifyRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
@@ -88,38 +107,46 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/manual'
+    | '/register'
     | '/support-request'
     | '/videos'
     | '/api/chat'
     | '/api/public/support-request-notify'
+    | '/api/public/warranty-registration-notify'
     | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/manual'
+    | '/register'
     | '/support-request'
     | '/videos'
     | '/api/chat'
     | '/api/public/support-request-notify'
+    | '/api/public/warranty-registration-notify'
     | '/lovable/email/transactional/preview'
   id:
     | '__root__'
     | '/'
     | '/manual'
+    | '/register'
     | '/support-request'
     | '/videos'
     | '/api/chat'
     | '/api/public/support-request-notify'
+    | '/api/public/warranty-registration-notify'
     | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ManualRoute: typeof ManualRoute
+  RegisterRoute: typeof RegisterRoute
   SupportRequestRoute: typeof SupportRequestRoute
   VideosRoute: typeof VideosRoute
   ApiChatRoute: typeof ApiChatRoute
   ApiPublicSupportRequestNotifyRoute: typeof ApiPublicSupportRequestNotifyRoute
+  ApiPublicWarrantyRegistrationNotifyRoute: typeof ApiPublicWarrantyRegistrationNotifyRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
@@ -137,6 +164,13 @@ declare module '@tanstack/react-router' {
       path: '/support-request'
       fullPath: '/support-request'
       preLoaderRoute: typeof SupportRequestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/manual': {
@@ -160,6 +194,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/warranty-registration-notify': {
+      id: '/api/public/warranty-registration-notify'
+      path: '/api/public/warranty-registration-notify'
+      fullPath: '/api/public/warranty-registration-notify'
+      preLoaderRoute: typeof ApiPublicWarrantyRegistrationNotifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/support-request-notify': {
       id: '/api/public/support-request-notify'
       path: '/api/public/support-request-notify'
@@ -180,22 +221,15 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ManualRoute: ManualRoute,
+  RegisterRoute: RegisterRoute,
   SupportRequestRoute: SupportRequestRoute,
   VideosRoute: VideosRoute,
   ApiChatRoute: ApiChatRoute,
   ApiPublicSupportRequestNotifyRoute: ApiPublicSupportRequestNotifyRoute,
+  ApiPublicWarrantyRegistrationNotifyRoute:
+    ApiPublicWarrantyRegistrationNotifyRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
