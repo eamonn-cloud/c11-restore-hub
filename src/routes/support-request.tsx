@@ -728,61 +728,59 @@ function SupportRequestPage() {
           </div>
         </section>
 
-        <div className="pt-4">
-          <button
-            type="submit"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-obsidian text-stone-base rounded-[2px] text-sm font-medium uppercase tracking-[0.18em] hover:bg-deep-current transition-colors"
-          >
-            Review & send request →
-          </button>
-          {Object.keys(errors).length > 0 && (
-            <p className="mt-4 text-sm text-deep-current">
-              Some required fields are missing - they&apos;re outlined above.
-            </p>
-          )}
-        </div>
+        {!submitted && (
+          <div className="pt-4">
+            <button
+              type="submit"
+              disabled={sending}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-obsidian text-stone-base rounded-[2px] text-sm font-medium uppercase tracking-[0.18em] hover:bg-deep-current transition-colors disabled:opacity-60"
+            >
+              {sending ? "Sending…" : "Send request →"}
+            </button>
+            {Object.keys(errors).length > 0 && (
+              <p className="mt-4 text-sm text-deep-current">
+                Some required fields are missing - they&apos;re outlined above.
+              </p>
+            )}
+            {sendError && <p className="mt-4 text-sm text-deep-current">{sendError}</p>}
+          </div>
+        )}
 
-        {/* SUMMARY */}
+        {/* CONFIRMATION */}
         {submitted && (
           <section ref={summaryRef} className="scroll-mt-24">
             <div className="border border-obsidian rounded-[2px] overflow-hidden">
               <div className="bg-obsidian text-stone-base p-8 md:p-10">
                 <div className="text-xs uppercase tracking-[0.22em] text-stone-base/70 flex items-center gap-2">
                   <span aria-hidden>✳</span>
-                  <span>Ready to send</span>
+                  <span>Request received</span>
                 </div>
                 <h2 className="mt-5 font-display text-3xl md:text-4xl font-bold uppercase leading-none">
-                  Send it to the team.
+                  Sent to the team.
                 </h2>
                 <p className="mt-4 font-editorial italic text-stone-base/70 max-w-xl">
-                  Choose email or WhatsApp - your answers are already written into the message.
-                  Attach the{" "}
+                  Your request{" "}
                   {files.length > 0
-                    ? `${files.length} file${files.length > 1 ? "s" : ""}`
-                    : "photos and video"}{" "}
-                  before you hit send.
+                    ? `and ${files.length} file${files.length > 1 ? "s" : ""} are`
+                    : "is"}{" "}
+                  with our engineers. {SUPPORT.responseTime} Need us sooner, message WhatsApp with
+                  your serial number.
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                  <a
-                    href={mailtoHref}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-stone-base text-obsidian rounded-[2px] text-sm font-medium uppercase tracking-[0.18em] hover:bg-thermal-rose transition-colors"
-                  >
-                    Open email →
-                  </a>
                   <a
                     href={whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-thermal-rose text-obsidian rounded-[2px] text-sm font-medium uppercase tracking-[0.18em] hover:bg-stone-base transition-colors"
                   >
-                    Send on WhatsApp →
+                    Chase on WhatsApp →
                   </a>
                   <button
                     type="button"
                     onClick={copy}
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-stone-base/50 rounded-[2px] text-sm font-medium uppercase tracking-[0.18em] hover:border-stone-base transition-colors"
                   >
-                    {copied ? "Copied ✓" : "Copy details"}
+                    {copied ? "Copied ✓" : "Copy a record"}
                   </button>
                 </div>
                 <p className="mt-6 text-xs uppercase tracking-[0.2em] text-stone-base/50">
