@@ -66,7 +66,11 @@ export const Route = createFileRoute("/api/chat")({
               if (message.includes("429")) {
                 return "Too many requests right now. Try again in a moment.";
               }
-              if (message.includes("402")) {
+              if (
+                message.includes("402") ||
+                message.toLowerCase().includes("credit") ||
+                message.toLowerCase().includes("payment")
+              ) {
                 return "The assistant is temporarily unavailable. Email service@c11recovery.com and we will help.";
               }
               return "Something went wrong. Try again, or contact service@c11recovery.com.";

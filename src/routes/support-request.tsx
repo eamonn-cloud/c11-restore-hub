@@ -8,7 +8,7 @@ export const Route = createFileRoute("/support-request")({
       {
         name: "description",
         content:
-          "Raise a technical support request for your C11 ice bath. Send your serial number, symptoms, checks already done and photos or videos in one go.",
+          "Raise a technical support request for your C11 ice bath. Send your serial number, symptoms, checks already done and photos or video in one go.",
       },
       { property: "og:title", content: "Technical Support Request - C11 Recovery" },
       {
@@ -23,9 +23,7 @@ export const Route = createFileRoute("/support-request")({
   component: SupportRequestPage,
 });
 
-/* ------------------------------------------------------------------ *
- * Central config - swap destinations here.
- * ------------------------------------------------------------------ */
+/* Central config - swap destinations here. */
 const SUPPORT = {
   email: "service@c11recovery.com",
   whatsappNumber: "+353 85 142 6203",
@@ -62,13 +60,9 @@ const FREQUENCY = ["Constant", "Intermittent", "Only on startup", "Only at certa
 
 const ACCESS = ["Remote call is fine to start", "Needs on-site visit", "Not sure yet"];
 
-/* ------------------------------------------------------------------ */
-
 type Files = { name: string; size: number }[];
 
-function labelCls() {
-  return "block text-xs uppercase tracking-[0.2em] font-medium text-obsidian/70";
-}
+const labelCls = "block text-xs uppercase tracking-[0.2em] font-medium text-obsidian/70";
 
 function inputCls(invalid?: boolean) {
   return [
@@ -91,12 +85,14 @@ function Field({
 }) {
   return (
     <div>
-      <span className={labelCls()}>
+      <span className={labelCls}>
         {label}
         {required ? <span className="text-thermal-rose"> *</span> : null}
       </span>
       {children}
-      {hint ? <p className="mt-2 text-[13px] text-obsidian/50 font-editorial italic">{hint}</p> : null}
+      {hint ? (
+        <p className="mt-2 text-[13px] text-obsidian/50 font-editorial italic">{hint}</p>
+      ) : null}
     </div>
   );
 }
@@ -111,9 +107,7 @@ function StepHeading({ n, title, blurb }: { n: string; title: string; blurb?: st
       <h2 className="mt-4 font-display text-2xl md:text-3xl font-bold uppercase tracking-tight leading-none">
         {title}
       </h2>
-      {blurb ? (
-        <p className="mt-3 font-editorial italic text-obsidian/60 max-w-xl">{blurb}</p>
-      ) : null}
+      {blurb ? <p className="mt-3 font-editorial italic text-obsidian/60 max-w-xl">{blurb}</p> : null}
     </div>
   );
 }
@@ -122,6 +116,13 @@ function bytes(n: number) {
   if (n < 1024 * 1024) return `${Math.max(1, Math.round(n / 1024))} KB`;
   return `${(n / (1024 * 1024)).toFixed(1)} MB`;
 }
+
+const chipCls = (on: boolean, invalid?: boolean) =>
+  `px-4 py-3 rounded-[2px] border text-[13px] transition-colors ${
+    on
+      ? "bg-obsidian text-stone-base border-obsidian"
+      : `bg-stone-base ${invalid ? "border-thermal-rose" : "border-obsidian/25"} hover:border-obsidian`
+  }`;
 
 function SupportRequestPage() {
   const [f, setF] = useState({
@@ -203,9 +204,7 @@ function SupportRequestPage() {
     const subject = `Support Request - ${f.model || "C11"}${f.serial ? ` - ${f.serial}` : ""}${
       f.name ? ` - ${f.name}` : ""
     }`;
-    return `mailto:${SUPPORT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-      summary,
-    )}`;
+    return `mailto:${SUPPORT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(summary)}`;
   }, [summary, f.model, f.serial, f.name]);
 
   const whatsappHref = useMemo(
@@ -215,10 +214,7 @@ function SupportRequestPage() {
 
   const onFiles = (list: FileList | null) => {
     if (!list) return;
-    setFiles((p) => [
-      ...p,
-      ...Array.from(list).map((x) => ({ name: x.name, size: x.size })),
-    ]);
+    setFiles((p) => [...p, ...Array.from(list).map((x) => ({ name: x.name, size: x.size }))]);
   };
 
   const validate = () => {
@@ -271,12 +267,12 @@ function SupportRequestPage() {
           >
             Tell us what
             <br />
-            it's doing.
+            it&apos;s doing.
           </h1>
           <p className="mt-8 font-editorial italic text-lg md:text-xl text-obsidian/70 max-w-2xl">
             One form with everything our engineers need - model, serial number, symptoms, what
-            you've already tried, and photos or video. We diagnose remotely first and only send an
-            engineer if the unit genuinely needs one.
+            you&apos;ve already tried, and photos or video. We diagnose remotely first and only send
+            an engineer if the unit genuinely needs one.
           </p>
           <p className="mt-8 text-xs uppercase tracking-[0.2em] text-obsidian/60">
             {SUPPORT.hours} · {SUPPORT.responseTime}
@@ -298,11 +294,17 @@ function SupportRequestPage() {
 
           <p className="mt-8 text-sm text-obsidian/70 max-w-2xl">
             Before you submit: most call-outs are a blocked filter or a low water level.{" "}
-            <Link to="/manual" className="border-b border-obsidian hover:text-deep-current hover:border-deep-current transition-colors">
+            <Link
+              to="/manual"
+              className="border-b border-obsidian hover:text-deep-current hover:border-deep-current transition-colors"
+            >
               Check the engineering reference
             </Link>{" "}
             or{" "}
-            <Link to="/videos" className="border-b border-obsidian hover:text-deep-current hover:border-deep-current transition-colors">
+            <Link
+              to="/videos"
+              className="border-b border-obsidian hover:text-deep-current hover:border-deep-current transition-colors"
+            >
               the maintenance videos
             </Link>{" "}
             first - it may save you a wait.
@@ -311,10 +313,17 @@ function SupportRequestPage() {
       </section>
 
       {/* FORM */}
-      <form onSubmit={submit} className="mx-auto max-w-[1000px] px-6 md:px-12 py-16 md:py-24 space-y-20">
-        {/* 1 - Your details */}
+      <form
+        onSubmit={submit}
+        className="mx-auto max-w-[1000px] px-6 md:px-12 py-16 md:py-24 space-y-20"
+      >
+        {/* 1 */}
         <section>
-          <StepHeading n="01" title="Your details" blurb="So we can call you back on the right number." />
+          <StepHeading
+            n="01"
+            title="Your details"
+            blurb="So we can call you back on the right number."
+          />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Field label="Full name" required>
               <input
@@ -358,7 +367,10 @@ function SupportRequestPage() {
               />
             </Field>
             <div className="md:col-span-2">
-              <Field label="Installation address" hint="Where the unit actually sits - include Eircode / postcode.">
+              <Field
+                label="Installation address"
+                hint="Where the unit actually sits - include Eircode / postcode."
+              >
                 <input
                   className={inputCls()}
                   value={f.address}
@@ -373,7 +385,7 @@ function SupportRequestPage() {
 
         <hr className="border-obsidian/20" />
 
-        {/* 2 - Product */}
+        {/* 2 */}
         <section>
           <StepHeading
             n="02"
@@ -387,11 +399,7 @@ function SupportRequestPage() {
                   key={m}
                   type="button"
                   onClick={() => set("model")(m)}
-                  className={`px-5 py-3 rounded-[2px] border text-xs uppercase tracking-[0.18em] font-medium transition-colors ${
-                    f.model === m
-                      ? "bg-obsidian text-stone-base border-obsidian"
-                      : `bg-stone-base ${errors.model ? "border-thermal-rose" : "border-obsidian/25"} hover:border-obsidian`
-                  }`}
+                  className={`${chipCls(f.model === m, errors.model)} uppercase tracking-[0.18em] font-medium text-xs px-5`}
                 >
                   {m}
                 </button>
@@ -400,7 +408,7 @@ function SupportRequestPage() {
           </Field>
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Field label="Serial number" required hint="e.g. on the silver plate, chiller housing.">
+            <Field label="Serial number" required hint="On the silver plate, chiller housing.">
               <input
                 className={inputCls(errors.serial)}
                 data-invalid={errors.serial ? "true" : undefined}
@@ -434,9 +442,13 @@ function SupportRequestPage() {
 
         <hr className="border-obsidian/20" />
 
-        {/* 3 - Issue */}
+        {/* 3 */}
         <section>
-          <StepHeading n="03" title="What's happening" blurb="The more specific, the faster we can fix it remotely." />
+          <StepHeading
+            n="03"
+            title="What's happening"
+            blurb="The more specific, the faster we can fix it remotely."
+          />
 
           <Field label="Issue area">
             <div className="mt-3 flex flex-wrap gap-3">
@@ -445,11 +457,7 @@ function SupportRequestPage() {
                   key={a}
                   type="button"
                   onClick={() => set("area")(a)}
-                  className={`px-4 py-3 rounded-[2px] border text-[13px] transition-colors ${
-                    f.area === a
-                      ? "bg-obsidian text-stone-base border-obsidian"
-                      : "bg-stone-base border-obsidian/25 hover:border-obsidian"
-                  }`}
+                  className={chipCls(f.area === a)}
                 >
                   {a}
                 </button>
@@ -495,11 +503,7 @@ function SupportRequestPage() {
                     key={x}
                     type="button"
                     onClick={() => set("frequency")(x)}
-                    className={`px-4 py-3 rounded-[2px] border text-[13px] transition-colors ${
-                      f.frequency === x
-                        ? "bg-obsidian text-stone-base border-obsidian"
-                        : "bg-stone-base border-obsidian/25 hover:border-obsidian"
-                    }`}
+                    className={chipCls(f.frequency === x)}
                   >
                     {x}
                   </button>
@@ -532,7 +536,7 @@ function SupportRequestPage() {
 
         <hr className="border-obsidian/20" />
 
-        {/* 4 - Already checked */}
+        {/* 4 */}
         <section>
           <StepHeading
             n="04"
@@ -569,7 +573,7 @@ function SupportRequestPage() {
 
         <hr className="border-obsidian/20" />
 
-        {/* 5 - Media */}
+        {/* 5 */}
         <section>
           <StepHeading
             n="05"
@@ -584,9 +588,7 @@ function SupportRequestPage() {
             }}
             className="border border-dashed border-obsidian/40 rounded-[2px] p-10 text-center"
           >
-            <p className="font-display text-xl font-bold uppercase leading-none">
-              Drop files here
-            </p>
+            <p className="font-display text-xl font-bold uppercase leading-none">Drop files here</p>
             <p className="mt-3 font-editorial italic text-obsidian/60">
               Photos of the serial plate, the display, the filter and a short video of the fault.
             </p>
@@ -610,7 +612,10 @@ function SupportRequestPage() {
           {files.length > 0 && (
             <ul className="mt-6 divide-y divide-obsidian/15 border border-obsidian/20 rounded-[2px]">
               {files.map((x, i) => (
-                <li key={`${x.name}-${i}`} className="flex items-center justify-between gap-4 px-5 py-4">
+                <li
+                  key={`${x.name}-${i}`}
+                  className="flex items-center justify-between gap-4 px-5 py-4"
+                >
                   <span className="text-sm truncate">{x.name}</span>
                   <span className="flex items-center gap-4 shrink-0">
                     <span className="text-[12px] text-obsidian/50">{bytes(x.size)}</span>
@@ -628,16 +633,20 @@ function SupportRequestPage() {
           )}
 
           <p className="mt-4 text-[13px] text-obsidian/60 font-editorial italic">
-            Files stay on your device - when you submit, they're listed in the message and you
+            Files stay on your device - when you submit, they&apos;re listed in the message and you
             attach them in your email app, or send them straight to us on WhatsApp.
           </p>
         </section>
 
         <hr className="border-obsidian/20" />
 
-        {/* 6 - Next step */}
+        {/* 6 */}
         <section>
-          <StepHeading n="06" title="Next step" blurb="We start with a remote call wherever possible." />
+          <StepHeading
+            n="06"
+            title="Next step"
+            blurb="We start with a remote call wherever possible."
+          />
           <Field label="Site access">
             <div className="mt-3 flex flex-wrap gap-3">
               {ACCESS.map((x) => (
@@ -645,11 +654,7 @@ function SupportRequestPage() {
                   key={x}
                   type="button"
                   onClick={() => set("access")(x)}
-                  className={`px-4 py-3 rounded-[2px] border text-[13px] transition-colors ${
-                    f.access === x
-                      ? "bg-obsidian text-stone-base border-obsidian"
-                      : "bg-stone-base border-obsidian/25 hover:border-obsidian"
-                  }`}
+                  className={chipCls(f.access === x)}
                 >
                   {x}
                 </button>
@@ -678,12 +683,12 @@ function SupportRequestPage() {
           </button>
           {Object.keys(errors).length > 0 && (
             <p className="mt-4 text-sm text-deep-current">
-              Some required fields are missing - they're outlined above.
+              Some required fields are missing - they&apos;re outlined above.
             </p>
           )}
         </div>
 
-        {/* SUMMARY / SEND */}
+        {/* SUMMARY */}
         {submitted && (
           <section ref={summaryRef} className="scroll-mt-24">
             <div className="border border-obsidian rounded-[2px] overflow-hidden">
@@ -697,7 +702,10 @@ function SupportRequestPage() {
                 </h2>
                 <p className="mt-4 font-editorial italic text-stone-base/70 max-w-xl">
                   Choose email or WhatsApp - your answers are already written into the message.
-                  Attach the {files.length > 0 ? `${files.length} file${files.length > 1 ? "s" : ""}` : "photos and video"}{" "}
+                  Attach the{" "}
+                  {files.length > 0
+                    ? `${files.length} file${files.length > 1 ? "s" : ""}`
+                    : "photos and video"}{" "}
                   before you hit send.
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
