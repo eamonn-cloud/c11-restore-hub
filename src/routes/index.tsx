@@ -51,7 +51,7 @@ const LINKS = {
   whatsapp: "https://wa.me/353851426203",
   phone: "tel:+353851426203",
   email: "mailto:service@c11recovery.com",
-  register: "mailto:service@c11recovery.com?subject=Product%20Registration",
+  register: "/register",
   warranty: "mailto:service@c11recovery.com?subject=Warranty%20Claim",
   service: "/support-request",
   privacy: "https://c11recovery.com/privacy-policy/",
