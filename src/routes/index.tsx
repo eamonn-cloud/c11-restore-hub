@@ -301,6 +301,33 @@ const FAQS: { q: string; a: string }[] = [
   },
 ];
 
+const REVIEWS: { name: string; role: string; stars: number; body: string }[] = [
+  {
+    name: "David O.",
+    role: "Kinos Plus owner",
+    stars: 5,
+    body: "Top class aftercare. The team talked me through the install over WhatsApp in ten minutes and the bath has been flawless since. Genuinely engineered to last.",
+  },
+  {
+    name: "Sarah M.",
+    role: "Kuura owner",
+    stars: 5,
+    body: "The engineering manual online is a game changer - I diagnosed a P01 flow fault myself in two minutes instead of waiting for a callout. The build quality is unreal.",
+  },
+  {
+    name: "Conor B.",
+    role: "Hanki owner",
+    stars: 5,
+    body: "Bought for our clinic. Two years in, still running like day one. Support actually picks up the phone and knows the product inside out. Would buy again.",
+  },
+  {
+    name: "Aoife K.",
+    role: "Kinos owner",
+    stars: 5,
+    body: "From ordering to setup to a small warranty query, everything was handled properly. The videos made installation straightforward even for a first-timer.",
+  },
+];
+
 
 function AftercarePage() {
   return (
