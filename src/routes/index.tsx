@@ -265,7 +265,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How do I register my product?",
-    a: "Email service@c11recovery.com with your name, delivery address, model, and serial number (found on the silver plate on the chiller housing). We'll confirm registration and file your warranty on our side.",
+    a: "Use the Register My Unit form on this page - it takes a minute and files your serial number and warranty on our side. Register within 30 days of delivery to activate cover.",
   },
   {
     q: "Where do I find my serial number?",
