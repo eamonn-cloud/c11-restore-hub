@@ -4,11 +4,16 @@ import { C11_KNOWLEDGE } from "@/lib/c11-knowledge";
 // expensive, so we split it into sections and only ship the ones relevant to the
 // current question (plus the always-on site/support facts).
 
+export type ModelId = "kinos" | "kinos-plus" | "hanki" | "kuura";
+
 type Section = {
   title: string;
   body: string;
   tokens: Set<string>;
+  models: Set<ModelId>;
 };
+
+const ALL_MODELS: ModelId[] = ["kinos", "kinos-plus", "hanki", "kuura"];
 
 const STOP_WORDS = new Set([
   "the", "and", "for", "with", "that", "this", "from", "have", "has", "does", "did",
@@ -27,6 +32,32 @@ function tokenize(text: string): string[] {
     .filter((word) => word.length > 2 && !STOP_WORDS.has(word));
 }
 
+function detectModels(title: string): Set<ModelId> {
+  const models = new Set<ModelId>();
+  const lower = title.toLowerCase();
+
+  // Kinos Plus must be checked before bare Kinos.
+  if (lower.includes("kinos plus") || lower.includes("kinos-plus")) {
+    models.add("kinos-plus");
+  } else if (lower.includes("kinos")) {
+    models.add("kinos");
+  }
+  if (lower.includes("hanki")) models.add("hanki");
+  if (lower.includes("kuura")) models.add("kuura");
+
+  // CHU manual tagged "general" applies to every model.
+  if (lower.includes("general")) {
+    ALL_MODELS.forEach((m) => models.add(m));
+  }
+
+  // Anything untagged (site facts, etc.) applies to all.
+  if (models.size === 0) {
+    ALL_MODELS.forEach((m) => models.add(m));
+  }
+
+  return models;
+}
+
 function splitSections(raw: string): Section[] {
   const parts = raw.split(/\n(?=={3,}\s)/g);
   return parts
@@ -34,6 +65,7 @@ function splitSections(raw: string): Section[] {
     .filter(Boolean)
     .flatMap((part) => {
       const title = part.split("\n", 1)[0] ?? "";
+      const sectionModels = detectModels(title);
       // Break very large documents into smaller chunks so retrieval stays precise.
       const chunks: string[] = [];
       const lines = part.split("\n");
@@ -50,6 +82,7 @@ function splitSections(raw: string): Section[] {
         title,
         body: body.startsWith(title) ? body : `${title}\n${body}`,
         tokens: new Set(tokenize(`${title}\n${body}`)),
+        models: sectionModels,
       }));
     });
 }
@@ -63,23 +96,38 @@ const SEARCHABLE = ALL_SECTIONS.filter((section) => !BASE_SECTIONS.includes(sect
 
 const MAX_CHARS = 30000;
 
-export function selectKnowledge(query: string): string {
+export function selectKnowledge(query: string, model?: ModelId): string {
   const queryTokens = tokenize(query);
+
+  // When a specific model is selected, only search sections that apply to it.
+  const pool = model
+    ? SEARCHABLE.filter((section) => section.models.has(model))
+    : SEARCHABLE;
+
   if (queryTokens.length === 0) {
-    return BASE_SECTIONS.map((section) => section.body).join("\n\n");
+    // No query: return base sections plus the top sections for the model (or everything).
+    const selected = [...BASE_SECTIONS.map((s) => s.body)];
+    let size = selected.join("\n\n").length;
+    for (const section of pool) {
+      if (size + section.body.length > MAX_CHARS) continue;
+      selected.push(section.body);
+      size += section.body.length + 2;
+    }
+    return selected.join("\n\n");
   }
 
-  const scored = SEARCHABLE.map((section) => {
-    let score = 0;
-    for (const token of queryTokens) {
-      if (section.tokens.has(token)) score += 1;
-      // Error codes such as p01 / e07 are high signal.
-      if (/^[pe]\d{1,2}$/.test(token) && section.body.toLowerCase().includes(token)) {
-        score += 6;
+  const scored = pool
+    .map((section) => {
+      let score = 0;
+      for (const token of queryTokens) {
+        if (section.tokens.has(token)) score += 1;
+        // Error codes such as p01 / e07 are high signal.
+        if (/^[pe]\d{1,2}$/.test(token) && section.body.toLowerCase().includes(token)) {
+          score += 6;
+        }
       }
-    }
-    return { section, score };
-  })
+      return { section, score };
+    })
     .filter((entry) => entry.score > 0)
     .sort((a, b) => b.score - a.score);
 
@@ -94,3 +142,10 @@ export function selectKnowledge(query: string): string {
 
   return selected.join("\n\n");
 }
+
+export const MODEL_LABELS: Record<ModelId, string> = {
+  kinos: "Kinos",
+  "kinos-plus": "Kinos Plus",
+  hanki: "Hanki",
+  kuura: "Kuura",
+};
