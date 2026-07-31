@@ -257,9 +257,10 @@ function SupportRequestPage() {
         uploaded.push({ name: file.name, size: file.size, path });
       }
 
-      const { data: inserted, error: insertError } = await supabase
+      const { error: insertError } = await supabase
         .from("support_requests")
         .insert({
+          id: ref,
           name: f.name.trim(),
           company: f.company.trim() || null,
           email: f.email.trim(),
@@ -280,9 +281,7 @@ function SupportRequestPage() {
           access: f.access || null,
           availability: f.availability.trim() || null,
           summary,
-        })
-        .select("id")
-        .single();
+        });
       if (insertError) throw insertError;
 
       // Notify the service team by email (non-blocking for the customer).
@@ -290,7 +289,7 @@ function SupportRequestPage() {
         await fetch("/api/public/support-request-notify", {
           method: "POST",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify({ id: inserted.id }),
+          body: JSON.stringify({ id: ref }),
         });
       } catch (notifyErr) {
         console.error("Support request notification failed", notifyErr);
