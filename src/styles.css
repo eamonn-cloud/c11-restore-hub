@@ -27,13 +27,13 @@
 }
 
 :root {
-  --stone-base: #F3EDE5;
+  --stone-base: #FFFFFF;
   --obsidian: #121212;
   --thermal-rose: #F5BAD3;
   --deep-current: #204296;
-  --soft-mineral: #C9C9C9;
+  --soft-mineral: #E6E6E6;
 
-  --background: #F3EDE5;
+  --background: #FFFFFF;
   --foreground: #121212;
   --border: #121212;
 }

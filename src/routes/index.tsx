@@ -306,28 +306,43 @@ function AftercarePage() {
   return (
     <main className="font-body text-obsidian bg-stone-base">
       {/* HERO */}
-      <section className="bg-obsidian text-stone-base border-b border-stone-base/20">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 pt-10 pb-20 md:pt-14 md:pb-28 lg:pt-16 lg:pb-40 min-h-[85vh] flex flex-col">
-          <SectionLabel tone="stone">Customer Aftercare</SectionLabel>
+      <section className="bg-stone-base text-obsidian">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 pt-16 pb-16 md:pt-24 md:pb-24">
+          <p className="font-editorial italic text-lg md:text-xl text-obsidian/70">
+            Customer Aftercare
+          </p>
 
-          <div className="mt-16 md:mt-24 lg:mt-32 flex-1 flex flex-col justify-end">
-            <h1
-              className="font-display font-bold uppercase leading-[0.9] tracking-[-0.02em]"
-              style={{ fontSize: "clamp(2.75rem, 10vw, 8.5rem)" }}
+          <h1
+            className="mt-4 font-display font-bold leading-[0.95] tracking-[-0.03em] max-w-4xl"
+            style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+          >
+            Aftercare &amp; Support
+          </h1>
+
+          <p className="mt-8 text-base md:text-lg leading-relaxed max-w-3xl text-obsidian/80">
+            Everything you need to set up, maintain, and get the most from your C11 recovery
+            equipment. Installation videos, manuals, error codes, water chemistry and direct access
+            to our service team.
+          </p>
+
+          <div className="mt-10 flex flex-wrap gap-4">
+            <A
+              href="/manual"
+              className="inline-flex items-center justify-center bg-obsidian text-stone-base px-8 py-4 text-sm md:text-base rounded-[2px] hover:bg-deep-current transition-colors"
             >
-              Aftercare
-              <br />& Support
-            </h1>
-
-            <p className="mt-10 md:mt-14 font-editorial text-xl md:text-2xl lg:text-3xl leading-snug max-w-3xl italic text-stone-base/90">
-              Everything you need to set up, maintain, and get the most from your
-              C11 recovery equipment.
-            </p>
+              Engineering Reference
+            </A>
+            <A
+              href={LINKS.whatsapp}
+              className="inline-flex items-center justify-center bg-thermal-rose text-obsidian px-8 py-4 text-sm md:text-base rounded-[2px] hover:bg-obsidian hover:text-stone-base transition-colors"
+            >
+              Talk To Our Team On WhatsApp
+            </A>
           </div>
         </div>
 
         {/* Slogan strip */}
-        <div className="border-t border-stone-base/20">
+        <div className="bg-obsidian">
           <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-6 md:py-7 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs md:text-sm uppercase tracking-[0.2em] text-stone-base/80">
             {[
               "Recovery for modern routines.",
