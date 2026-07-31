@@ -688,8 +688,7 @@ function SupportRequestPage() {
           )}
 
           <p className="mt-4 text-[13px] text-obsidian/60 font-editorial italic">
-            Files stay on your device - when you submit, they&apos;re listed in the message and you
-            attach them in your email app, or send them straight to us on WhatsApp.
+            Your files upload securely with the request - no need to email them separately.
           </p>
         </section>
 
