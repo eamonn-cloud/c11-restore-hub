@@ -139,7 +139,7 @@ export function AskC11() {
                     <MessageContent
                       className={
                         message.role === "user"
-                          ? "bg-obsidian text-stone-base rounded-[2px] px-3 py-2 text-sm"
+                          ? "group-[.is-user]:bg-obsidian group-[.is-user]:text-stone-base group-[.is-user]:rounded-[2px] group-[.is-user]:px-3 group-[.is-user]:py-2 text-sm"
                           : "bg-transparent p-0 text-sm text-obsidian"
                       }
                     >
