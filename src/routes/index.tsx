@@ -728,8 +728,8 @@ function AftercarePage() {
               >
                 <span className="text-xs uppercase tracking-[0.2em] font-medium text-stone-base/80">Service request</span>
                 <div className="mt-16">
-                  <div className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight leading-none">Book a callback</div>
-                  <div className="mt-3 font-editorial italic text-stone-base/70">Warranty, install & repairs</div>
+                  <div className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight leading-none">Technical support form</div>
+                  <div className="mt-3 font-editorial italic text-stone-base/70">Serial number, symptoms, photos & video</div>
                   <div className="mt-6 text-sm uppercase tracking-[0.16em] font-medium border-b border-current pb-1 inline-flex items-center gap-2">
                     Raise a ticket
                     <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
