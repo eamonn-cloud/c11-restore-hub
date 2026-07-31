@@ -53,7 +53,7 @@ const LINKS = {
   email: "mailto:service@c11recovery.com",
   register: "mailto:service@c11recovery.com?subject=Product%20Registration",
   warranty: "mailto:service@c11recovery.com?subject=Warranty%20Claim",
-  service: "mailto:service@c11recovery.com?subject=Service%20Request",
+  service: "/support-request",
   privacy: "https://c11recovery.com/privacy-policy/",
   terms: "https://c11recovery.com/terms-conditions/",
   returns: "mailto:service@c11recovery.com?subject=Returns%20%26%20Refunds",
