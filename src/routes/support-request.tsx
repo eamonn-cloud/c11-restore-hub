@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useRef, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/support-request")({
   head: () => ({
@@ -60,7 +61,7 @@ const FREQUENCY = ["Constant", "Intermittent", "Only on startup", "Only at certa
 
 const ACCESS = ["Remote call is fine to start", "Needs on-site visit", "Not sure yet"];
 
-type Files = { name: string; size: number }[];
+type Files = File[];
 
 const labelCls = "block text-xs uppercase tracking-[0.2em] font-medium text-obsidian/70";
 
@@ -147,6 +148,8 @@ function SupportRequestPage() {
   const [checks, setChecks] = useState<string[]>([]);
   const [files, setFiles] = useState<Files>([]);
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, boolean>>({});
   const [copied, setCopied] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
@@ -214,7 +217,7 @@ function SupportRequestPage() {
 
   const onFiles = (list: FileList | null) => {
     if (!list) return;
-    setFiles((p) => [...p, ...Array.from(list).map((x) => ({ name: x.name, size: x.size }))]);
+    setFiles((p) => [...p, ...Array.from(list)]);
   };
 
   const validate = () => {
@@ -228,19 +231,71 @@ function SupportRequestPage() {
     return Object.keys(next).length === 0;
   };
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (sending) return;
     if (!validate()) {
       const first = document.querySelector('[data-invalid="true"]') as HTMLElement | null;
       first?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
-    setSubmitted(true);
-    window.setTimeout(
-      () => summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }),
-      50,
-    );
+
+    setSending(true);
+    setSendError(null);
+
+    try {
+      const ref = crypto.randomUUID();
+      const uploaded: { name: string; size: number; path: string }[] = [];
+
+      for (const file of files) {
+        const safe = file.name.replace(/[^\w.\-]+/g, "_").slice(-80);
+        const path = `${ref}/${Date.now()}-${safe}`;
+        const { error } = await supabase.storage
+          .from("support-uploads")
+          .upload(path, file, { upsert: false, contentType: file.type || undefined });
+        if (error) throw error;
+        uploaded.push({ name: file.name, size: file.size, path });
+      }
+
+      const { error: insertError } = await supabase.from("support_requests").insert({
+        name: f.name.trim(),
+        company: f.company.trim() || null,
+        email: f.email.trim(),
+        phone: f.phone.trim(),
+        address: f.address.trim() || null,
+        model: f.model,
+        serial: f.serial.trim(),
+        purchased: f.purchased.trim() || null,
+        installed_by: f.installedBy.trim() || null,
+        issue_area: f.area || null,
+        error_code: f.errorCode.trim() || null,
+        frequency: f.frequency || null,
+        started: f.started.trim() || null,
+        water_temp: f.waterTemp.trim() || null,
+        description: f.description.trim(),
+        checks,
+        files: uploaded,
+        access: f.access || null,
+        availability: f.availability.trim() || null,
+        summary,
+      });
+      if (insertError) throw insertError;
+
+      setSubmitted(true);
+      window.setTimeout(
+        () => summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }),
+        50,
+      );
+    } catch (err) {
+      console.error("Support request submit failed", err);
+      setSendError(
+        "We could not send that automatically. Please try again, or email service@c11recovery.com.",
+      );
+    } finally {
+      setSending(false);
+    }
   };
+
 
   const copy = async () => {
     try {
@@ -633,8 +688,7 @@ function SupportRequestPage() {
           )}
 
           <p className="mt-4 text-[13px] text-obsidian/60 font-editorial italic">
-            Files stay on your device - when you submit, they&apos;re listed in the message and you
-            attach them in your email app, or send them straight to us on WhatsApp.
+            Your files upload securely with the request - no need to email them separately.
           </p>
         </section>
 
@@ -674,61 +728,59 @@ function SupportRequestPage() {
           </div>
         </section>
 
-        <div className="pt-4">
-          <button
-            type="submit"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-obsidian text-stone-base rounded-[2px] text-sm font-medium uppercase tracking-[0.18em] hover:bg-deep-current transition-colors"
-          >
-            Review & send request →
-          </button>
-          {Object.keys(errors).length > 0 && (
-            <p className="mt-4 text-sm text-deep-current">
-              Some required fields are missing - they&apos;re outlined above.
-            </p>
-          )}
-        </div>
+        {!submitted && (
+          <div className="pt-4">
+            <button
+              type="submit"
+              disabled={sending}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-obsidian text-stone-base rounded-[2px] text-sm font-medium uppercase tracking-[0.18em] hover:bg-deep-current transition-colors disabled:opacity-60"
+            >
+              {sending ? "Sending…" : "Send request →"}
+            </button>
+            {Object.keys(errors).length > 0 && (
+              <p className="mt-4 text-sm text-deep-current">
+                Some required fields are missing - they&apos;re outlined above.
+              </p>
+            )}
+            {sendError && <p className="mt-4 text-sm text-deep-current">{sendError}</p>}
+          </div>
+        )}
 
-        {/* SUMMARY */}
+        {/* CONFIRMATION */}
         {submitted && (
           <section ref={summaryRef} className="scroll-mt-24">
             <div className="border border-obsidian rounded-[2px] overflow-hidden">
               <div className="bg-obsidian text-stone-base p-8 md:p-10">
                 <div className="text-xs uppercase tracking-[0.22em] text-stone-base/70 flex items-center gap-2">
                   <span aria-hidden>✳</span>
-                  <span>Ready to send</span>
+                  <span>Request received</span>
                 </div>
                 <h2 className="mt-5 font-display text-3xl md:text-4xl font-bold uppercase leading-none">
-                  Send it to the team.
+                  Sent to the team.
                 </h2>
                 <p className="mt-4 font-editorial italic text-stone-base/70 max-w-xl">
-                  Choose email or WhatsApp - your answers are already written into the message.
-                  Attach the{" "}
+                  Your request{" "}
                   {files.length > 0
-                    ? `${files.length} file${files.length > 1 ? "s" : ""}`
-                    : "photos and video"}{" "}
-                  before you hit send.
+                    ? `and ${files.length} file${files.length > 1 ? "s" : ""} are`
+                    : "is"}{" "}
+                  with our engineers. {SUPPORT.responseTime} Need us sooner, message WhatsApp with
+                  your serial number.
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                  <a
-                    href={mailtoHref}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-stone-base text-obsidian rounded-[2px] text-sm font-medium uppercase tracking-[0.18em] hover:bg-thermal-rose transition-colors"
-                  >
-                    Open email →
-                  </a>
                   <a
                     href={whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-thermal-rose text-obsidian rounded-[2px] text-sm font-medium uppercase tracking-[0.18em] hover:bg-stone-base transition-colors"
                   >
-                    Send on WhatsApp →
+                    Chase on WhatsApp →
                   </a>
                   <button
                     type="button"
                     onClick={copy}
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-stone-base/50 rounded-[2px] text-sm font-medium uppercase tracking-[0.18em] hover:border-stone-base transition-colors"
                   >
-                    {copied ? "Copied ✓" : "Copy details"}
+                    {copied ? "Copied ✓" : "Copy a record"}
                   </button>
                 </div>
                 <p className="mt-6 text-xs uppercase tracking-[0.2em] text-stone-base/50">
