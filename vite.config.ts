@@ -23,11 +23,16 @@ export default defineConfig({
   },
   vite: {
     resolve: {
-      alias: {
-        "entities/lib/decode.js": path.resolve(__dirname, "node_modules/entities/lib/decode.js"),
-        "entities/lib/encode.js": path.resolve(__dirname, "node_modules/entities/lib/encode.js"),
-        entities: path.resolve(__dirname, "node_modules/entities"),
-      },
+      alias: [
+        // parse5 depends on entities v6 (nested); keep its subpath exports working
+        {
+          find: /^entities\/(escape|decode)$/,
+          replacement: path.resolve(__dirname, "node_modules/parse5/node_modules/entities/dist/esm/$1.js"),
+        },
+        { find: "entities/lib/decode.js", replacement: path.resolve(__dirname, "node_modules/entities/lib/decode.js") },
+        { find: "entities/lib/encode.js", replacement: path.resolve(__dirname, "node_modules/entities/lib/encode.js") },
+        { find: /^entities$/, replacement: path.resolve(__dirname, "node_modules/entities/lib/esm/index.js") },
+      ],
     },
   },
 });
