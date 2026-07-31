@@ -23,7 +23,7 @@ export default defineConfig({
   },
   vite: {
     resolve: {
-      alias: {
+      alias: [
         // parse5 depends on entities v6 (nested); keep its subpath exports working
         {
           find: /^entities\/(escape|decode)$/,
@@ -32,8 +32,7 @@ export default defineConfig({
         { find: "entities/lib/decode.js", replacement: path.resolve(__dirname, "node_modules/entities/lib/decode.js") },
         { find: "entities/lib/encode.js", replacement: path.resolve(__dirname, "node_modules/entities/lib/encode.js") },
         { find: /^entities$/, replacement: path.resolve(__dirname, "node_modules/entities/lib/esm/index.js") },
-
-      },
+      ],
     },
   },
 });
