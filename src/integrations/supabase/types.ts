@@ -14,7 +14,84 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      support_requests: {
+        Row: {
+          access: string | null
+          address: string | null
+          availability: string | null
+          checks: Json
+          company: string | null
+          created_at: string
+          description: string
+          email: string
+          error_code: string | null
+          files: Json
+          frequency: string | null
+          id: string
+          installed_by: string | null
+          issue_area: string | null
+          model: string
+          name: string
+          phone: string
+          purchased: string | null
+          serial: string
+          started: string | null
+          status: string
+          summary: string
+          water_temp: string | null
+        }
+        Insert: {
+          access?: string | null
+          address?: string | null
+          availability?: string | null
+          checks?: Json
+          company?: string | null
+          created_at?: string
+          description: string
+          email: string
+          error_code?: string | null
+          files?: Json
+          frequency?: string | null
+          id?: string
+          installed_by?: string | null
+          issue_area?: string | null
+          model: string
+          name: string
+          phone: string
+          purchased?: string | null
+          serial: string
+          started?: string | null
+          status?: string
+          summary: string
+          water_temp?: string | null
+        }
+        Update: {
+          access?: string | null
+          address?: string | null
+          availability?: string | null
+          checks?: Json
+          company?: string | null
+          created_at?: string
+          description?: string
+          email?: string
+          error_code?: string | null
+          files?: Json
+          frequency?: string | null
+          id?: string
+          installed_by?: string | null
+          issue_area?: string | null
+          model?: string
+          name?: string
+          phone?: string
+          purchased?: string | null
+          serial?: string
+          started?: string | null
+          status?: string
+          summary?: string
+          water_temp?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
