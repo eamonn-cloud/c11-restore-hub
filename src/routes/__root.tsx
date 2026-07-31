@@ -216,6 +216,13 @@ function SiteHeader() {
             >
               Manual
             </Link>
+            <Link
+              to="/support-request"
+              className={navLink}
+              activeProps={{ className: `${navLink} ${activeCls}` }}
+            >
+              Support form
+            </Link>
           </nav>
 
           <div className="hidden md:flex items-center gap-3 pl-2">
