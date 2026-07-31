@@ -60,7 +60,7 @@ const FREQUENCY = ["Constant", "Intermittent", "Only on startup", "Only at certa
 
 const ACCESS = ["Remote call is fine to start", "Needs on-site visit", "Not sure yet"];
 
-type Files = { name: string; size: number }[];
+type Files = File[];
 
 const labelCls = "block text-xs uppercase tracking-[0.2em] font-medium text-obsidian/70";
 
