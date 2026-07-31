@@ -214,7 +214,7 @@ function SupportRequestPage() {
 
   const onFiles = (list: FileList | null) => {
     if (!list) return;
-    setFiles((p) => [...p, ...Array.from(list).map((x) => ({ name: x.name, size: x.size }))]);
+    setFiles((p) => [...p, ...Array.from(list)]);
   };
 
   const validate = () => {
@@ -228,19 +228,71 @@ function SupportRequestPage() {
     return Object.keys(next).length === 0;
   };
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (sending) return;
     if (!validate()) {
       const first = document.querySelector('[data-invalid="true"]') as HTMLElement | null;
       first?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
-    setSubmitted(true);
-    window.setTimeout(
-      () => summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }),
-      50,
-    );
+
+    setSending(true);
+    setSendError(null);
+
+    try {
+      const ref = crypto.randomUUID();
+      const uploaded: { name: string; size: number; path: string }[] = [];
+
+      for (const file of files) {
+        const safe = file.name.replace(/[^\w.\-]+/g, "_").slice(-80);
+        const path = `${ref}/${Date.now()}-${safe}`;
+        const { error } = await supabase.storage
+          .from("support-uploads")
+          .upload(path, file, { upsert: false, contentType: file.type || undefined });
+        if (error) throw error;
+        uploaded.push({ name: file.name, size: file.size, path });
+      }
+
+      const { error: insertError } = await supabase.from("support_requests").insert({
+        name: f.name.trim(),
+        company: f.company.trim() || null,
+        email: f.email.trim(),
+        phone: f.phone.trim(),
+        address: f.address.trim() || null,
+        model: f.model,
+        serial: f.serial.trim(),
+        purchased: f.purchased.trim() || null,
+        installed_by: f.installedBy.trim() || null,
+        issue_area: f.area || null,
+        error_code: f.errorCode.trim() || null,
+        frequency: f.frequency || null,
+        started: f.started.trim() || null,
+        water_temp: f.waterTemp.trim() || null,
+        description: f.description.trim(),
+        checks,
+        files: uploaded,
+        access: f.access || null,
+        availability: f.availability.trim() || null,
+        summary,
+      });
+      if (insertError) throw insertError;
+
+      setSubmitted(true);
+      window.setTimeout(
+        () => summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }),
+        50,
+      );
+    } catch (err) {
+      console.error("Support request submit failed", err);
+      setSendError(
+        "We could not send that automatically. Please try again, or email service@c11recovery.com.",
+      );
+    } finally {
+      setSending(false);
+    }
   };
+
 
   const copy = async () => {
     try {
